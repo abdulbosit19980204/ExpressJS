@@ -1,6 +1,7 @@
 import express from "express";
 import { engine, create } from "express-handlebars"
-
+import AuthRouter from "./routes/auth.js"
+import ProductsRouter from "./routes/products.js"
 const app = express()
 
 //handle barsni shu yerda sozlab olamiz
@@ -14,13 +15,11 @@ app.set('views', './views');
 
 //shu yerda handle barsni sozlamlari tugadi endi uni foydalanish mumkin
 
-app.get('/', (req, res) => {
-    res.render('index')
-})
+// Middlewares
+app.use(AuthRouter)
+app.use(ProductsRouter)
 
-app.get('/about', (req, res) => {
-    res.render('about')
-})
+
 
 const PORT = process.env.PORT || 4100
 app.listen(PORT, () => { console.log("Server is running PORT: ", PORT); })
