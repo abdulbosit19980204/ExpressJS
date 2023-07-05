@@ -1,7 +1,7 @@
 import express from "express";
 import path, { dirname } from "path"
 import { fileURLToPath } from "url";
-import { engine } from "express-handlebars"
+import { engine, create } from "express-handlebars"
 
 const app = express()
 const __filename = fileURLToPath(
@@ -9,8 +9,12 @@ const __filename = fileURLToPath(
 const __dirname = dirname(__filename)
 
 //handle barsni shu yerda sozlab olamiz
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
+const hbs = create({
+    defaultLayout: 'main',
+    extname: 'hbs',
+})
+app.engine('hbs', hbs.engine);
+app.set('view engine', 'hbs');
 app.set('views', './views');
 
 //shu yerda handle barsni sozlamlari tugadi endi uni foydalanish mumkin
