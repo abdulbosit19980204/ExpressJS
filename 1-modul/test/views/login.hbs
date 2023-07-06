@@ -1,14 +1,14 @@
 <div class="col-4 m-auto mt-5">
-    <form action="/login" method="post">
+    <form action="/login" method="post" class="was-validated">
     
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating mb-2">
-      <input  name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input  name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating mb-2">
-      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
       <label for="floatingPassword">Password</label>
     </div>
 
@@ -17,3 +17,4 @@
     <a href="/register" class="btn btn-warning">Register</a>
   </form>
 </div>
+
