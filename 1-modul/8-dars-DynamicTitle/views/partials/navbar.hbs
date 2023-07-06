@@ -2,18 +2,25 @@
     <div class="px-3 py-2 text-bg-dark border-bottom">
          <div class="container d-flex flex-wrap justify-content-center">
             <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <i class="bi bi-apple fs-1"></i><span class="fs-6"4>store</span>
-            
-          </a>
+              <i class="bi bi-apple fs-1"></i><span class="fs-6"4>store</span>
+            </a>
        
 
         <div class="text-end">
           <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
           <button type="button" class="btn btn-light text-dark ms-2">
-            <a class="text-dark text-decoration-none" href="/login">Login</a>
+            {{#if isLogin}}
+            <a class="text-dark  text-decoration-none  badge  text-primary-emphasis bg-warning-subtle rounded-pill" href="/login">Login</a>
+            {{else}}
+            <a class="text-dark  text-decoration-none  badge  text-primary-emphasis rounded-pill" href="/login">Login</a>
+            {{/if}}
             </button>
           <button type="button" class="btn btn-light me-2">
-            <a  class="text-dark text-decoration-none" href="/register">Sign-up</a>
+            {{#if isRegister}}
+              <a  class="text-dark text-decoration-none badge  text-primary-emphasis bg-warning-subtle rounded-pill" href="/register">Sign-up</a>
+            {{else}}
+              <a  class="text-dark text-decoration-none badge  text-primary-emphasis rounded-pill" href="/register">Sign-up</a>
+            {{/if}}
             </button>
             <img class="rounded-circle me-2" width="24" height="24" src="https://avatars.githubusercontent.com/u/71276545?v=4" alt="">Abdulbosit Tuychiev
           </span>
@@ -34,19 +41,34 @@
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     
             <li>
-              <a href="/add" class="nav-link text-secondary text-center">
+              {{#if isAdd}}
+              <a href="/add" class="nav-link text-secondary text-center badge text-primary-emphasis bg-primary-subtle ">
                 <i class="bi bi-database-fill-add fs-4"></i><br>
                 Add
               </a>
-            </li>
-            <li>
-              <a href="/products" class="nav-link text-secondary text-center">
-                <i class="bi bi-grid fs-4"></i><br>
-                Products
+              {{else}}
+              <a href="/add" class="nav-link text-secondary text-center badge  ">
+                <i class="bi bi-database-fill-add fs-4"></i><br>
+                Add
               </a>
+              
+              {{/if}}
             </li>
             <li>
-              <a href="#" class="nav-link text-secondary text-center">
+              {{#if isProducts}}
+                <a href="/products" class="nav-link text-secondary text-center   badge text-primary-emphasis bg-primary-subtle  ">
+                  <i class="bi bi-grid fs-4"></i><br>
+                  Products
+                </a>
+              {{else}}
+                <a href="/products" class="nav-link text-secondary text-center   badge">
+                  <i class="bi bi-grid fs-4"></i><br>
+                  Products
+                </a>
+              {{/if}}
+            </li>
+            <li>
+              <a href="#" class="nav-link text-secondary text-center badge ">
                <i class="bi bi-person-circle fs-4"></i><br>
                 Customers
               </a>
