@@ -1,1 +1,25 @@
-<h1>Register page</h1>
+<div class="col-4 m-auto mt-5">
+    <form action="/register" method="post">
+     <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+
+    <div class="form-floating mb-2">
+      <input name="fistName" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">First name</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input name="lastName" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Last name</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="btn btn-primary py-2" type="submit">Register</button>
+    <a href="/login" class="text-decoration-none btn btn-warning">Signin</a>
+     </form>
+</div>

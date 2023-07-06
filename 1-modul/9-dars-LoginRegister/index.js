@@ -17,6 +17,7 @@ app.set('views', './views');
 
 // Middlewares
 
+app.use(express.urlencoded({ extended: true }))
 app.use(AuthRoutes);
 app.use(ProductsRoutes)
 
