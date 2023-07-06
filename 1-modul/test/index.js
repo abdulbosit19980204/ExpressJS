@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import { engine, create } from "express-handlebars"
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
@@ -16,6 +16,7 @@ app.set('views', './views');
 //shu yerda handle barsni sozlamlari tugadi endi uni foydalanish mumkin
 
 // Middlewares
+app.use(express.urlencoded({ extended: true }))
 app.use(AuthRouter)
 app.use(ProductsRouter)
 
