@@ -1,7 +1,11 @@
 import express from "express";
 import { engine, create } from "express-handlebars"
+import mongoose from "mongoose";
 import AuthRoutes from "./routes/auth.js"
 import ProductsRoutes from "./routes/products.js"
+// import * as dotenv from 'dotenv'
+// dotenv.config()
+import 'dotenv/config'
 const app = express() // app is exemplar from express
 
 //Handlebars setting
@@ -18,9 +22,18 @@ app.set('views', './views');
 // Middlewares
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
+app.use(express.json())
 app.use(AuthRoutes);
 app.use(ProductsRoutes)
+
+// MongoDB is connecting via Mongoose here
+mongoose.set('strictQuery', false)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true
+})
 
 // server is running here
 const PORT = process.env.PORT || 4100
 app.listen(PORT, () => { console.log(`Server is running on port: ${PORT}`); })
+
+// mongodb+srv://uzdev7:<password>@cluster0.jdldvza.mongodb.net/?retryWrites=true&w=majority
