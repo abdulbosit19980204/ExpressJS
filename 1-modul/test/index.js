@@ -25,9 +25,20 @@ app.use(express.json())
 app.use(AuthRouter)
 app.use(ProductsRouter)
 
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true
-})
 
-const PORT = process.env.PORT || 4100
-app.listen(PORT, () => { console.log("Server is running PORT: ", PORT); })
+
+const startApp = () => {
+    try {
+        mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true
+        })
+        console.log("Mongo DB connected");
+
+        const PORT = process.env.PORT || 4100
+        app.listen(PORT, () => { console.log("Server is running PORT: ", PORT); })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+startApp()
