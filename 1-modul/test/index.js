@@ -17,6 +17,7 @@ app.set('views', './views');
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"))
 app.use(AuthRouter)
 app.use(ProductsRouter)
 
