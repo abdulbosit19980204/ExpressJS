@@ -27,13 +27,22 @@ app.use(AuthRoutes);
 app.use(ProductsRoutes)
 
 // MongoDB is connecting via Mongoose here
-mongoose.set('strictQuery', false)
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true
-})
 
-// server is running here
-const PORT = process.env.PORT || 4100
-app.listen(PORT, () => { console.log(`Server is running on port: ${PORT}`); })
 
-// mongodb+srv://uzdev7:<password>@cluster0.jdldvza.mongodb.net/?retryWrites=true&w=majority
+const startApp = () => {
+    try {
+        mongoose.set('strictQuery', false)
+        mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true
+
+        })
+        console.log("Mongo DB connected");
+        // server is running here
+        const PORT = process.env.PORT || 4100
+        app.listen(PORT, () => { console.log(`Server is running on port: ${PORT}`); })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+startApp()
