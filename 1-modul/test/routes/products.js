@@ -22,16 +22,5 @@ router.get('/products', (req, res) => {
 })
 
 
-// Post methods
-
-router.post('/login', (req, res) => {
-    console.log("User authentificated", req.body);
-    res.redirect('/')
-})
-
-router.post('/register', (req, res) => {
-    console.log("New user registered", req.body);
-    res.redirect('/login')
-})
 
 export default router
