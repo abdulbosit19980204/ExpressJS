@@ -20,26 +20,32 @@ router.get('/login', (req, res) => {
 
 // Post methods
 
-router.post('/login', async(req, res) => {
-    const userData = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        passsword: req.body.passsword,
-        address: req.body.address,
-        country: req.body.country,
-        state: req.body.state,
-        zip: req.body.zip,
-    }
 
-    const user = await User.create(userData)
-    console.log(user);
-    res.redirect('/')
+router.post('/register', async(req, res) => {
+    try {
+        const userData = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            address: req.body.address,
+            country: req.body.country,
+            state: req.body.state,
+            zip: req.body.zip,
+        }
+
+        const user = await User.create(userData)
+        console.log(user);
+        res.redirect('/login')
+    } catch (error) {
+        res.send(error)
+    }
 })
 
-router.post('/register', (req, res) => {
-    console.log("New user registered", req.body);
-    res.redirect('/login')
+
+router.post('/login', (req, res) => {
+    console.log("User auth", req.body);
+    res.redirect('/')
 })
 
 
