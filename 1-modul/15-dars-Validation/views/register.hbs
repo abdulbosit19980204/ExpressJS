@@ -2,7 +2,10 @@
     <form action="/register" method="post">
      <h1 class="h3 mb-3 fw-normal text-center">Welcome to Register</h1>
     {{#if registerError}}
-    <p>{{registerError}}</p>
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>Error!</strong> {{registerError}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     {{/if}}
     <div class="form-floating mb-2">
       <input name="firstName" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
