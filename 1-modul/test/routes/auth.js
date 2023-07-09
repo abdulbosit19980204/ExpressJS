@@ -10,6 +10,7 @@ router.get('/register', (req, res) => {
     res.render('register', {
         title: "APP | Register",
         isRegister: true,
+        registerError: req.flash('registerError'),
     })
 })
 
@@ -17,6 +18,7 @@ router.get('/login', (req, res) => {
     res.render('login', {
         title: "APP | Login",
         isLogin: true,
+        loginError: req.flash('loginError'),
     })
 })
 
@@ -24,44 +26,59 @@ router.get('/login', (req, res) => {
 
 
 router.post('/register', async(req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        const userData = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            userImage: req.body.userImage,
-            email: req.body.email,
-            password: hashedPassword,
-            address: req.body.address,
-            country: req.body.country,
-            state: req.body.state,
-            zip: req.body.zip,
-        }
-
-        const user = await User.create(userData)
-        console.log(user);
-        res.redirect('/login')
-    } catch (error) {
-        res.send(error)
+    const { firstName, lastName, userImage, email, password, address, country, state, zipCode } = req.body
+    if (!firstName || !lastName || !userImage || !email || !password || !address || !country || !state || !zipCode) {
+        req.flash('registerError', "All fileds required")
+        res.redirect('/register')
+        return
     }
+
+    const candidate = User.findOne({ email })
+    if (candidate) {
+        req.flash('registerError', "User already registred")
+        res.redirect('/register')
+        return
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        userImage: userImage,
+        email: email,
+        password: hashedPassword,
+        address: address,
+        country: country,
+        state: state,
+        zipCode: zipCode,
+    }
+
+    const user = await User.create(userData)
+    console.log(user);
+    res.redirect('/login')
 })
 
 
 router.post('/login', async(req, res) => {
-    const exsitUser = await User.findOne({ email: req.body.email })
+    const { email, password } = req.body
+    if (!email || !password) {
+        req.flash('loginError', "All fileds required")
+        res.redirect('/login')
+        return
+    }
+    const exsitUser = await User.findOne({ email })
     if (!exsitUser) {
-        console.log("User not found");
+        req.flash('loginError', "User not found")
         res.redirect('/login')
         return false
     }
 
     const isPassEqual = await bcrypt.compare(req.body.password, exsitUser.password)
     if (!isPassEqual) {
-        console.log("Password is incorrect! Please try again");
+        req.flash('loginError', 'Password is incorrect! Please try again')
         res.redirect('/login')
         return false
     }
-
     console.log("New user login");
     res.redirect('/')
 })

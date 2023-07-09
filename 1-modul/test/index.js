@@ -2,6 +2,8 @@ import express, { urlencoded } from "express";
 import { engine, create } from "express-handlebars"
 import mongoose from "mongoose";
 import 'dotenv/config'
+import session from "express-session";
+import flash from "connect-flash"
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
 const app = express()
@@ -21,7 +23,8 @@ app.set('views', './views');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(express.json())
-
+app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
+app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)
 

@@ -10,7 +10,7 @@ const userSchema = Schema({
     address: { type: String, required: true },
     country: { type: String, required: true },
     state: { type: String, required: true },
-    zip: { type: String, required: false },
+    zipCode: { type: String, required: false },
 
 })
 

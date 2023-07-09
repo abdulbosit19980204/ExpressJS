@@ -3,10 +3,16 @@
     <div class="modal-content rounded-4 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
       </div>
-
+      
       <div class="modal-body p-5 pt-0">
+        {{#if registerError}}
+         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Error!</strong> {{registerError}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
         <form class="was-validated" novalidate="" action="/register" method="post"> 
           <div class="row g-3">
               <div class="col-sm-8">
@@ -35,9 +41,7 @@
             </div>
              <div class="col-sm-4">
               <img class="img-thumbnail" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" alt="">
-            </div>
-          
-           
+              </div>
            
            <div class="col-sm-6">
               <label for="email" class="form-label">Email <span class="text-warning fs-5">*</span></label>
