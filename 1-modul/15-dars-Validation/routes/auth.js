@@ -7,6 +7,7 @@ router.get('/register', (req, res) => {
     res.render('register', {
         title: "APP | Register ",
         isRegister: true,
+        registerError: 'RegError'
     })
 })
 
@@ -14,6 +15,7 @@ router.get('/login', (req, res) => {
     res.render('login', {
         title: "APP | Login",
         isLogin: true,
+        loginError: req.flash('loginError')
     })
 })
 
@@ -34,14 +36,19 @@ router.post('/register', async(req, res) => {
 })
 
 router.post('/login', async(req, res) => {
-    const existUser = await User.findOne({ email: req.body.email })
+    const { email, password } = req.body
+    if (!email || !password) {
+        req.flash("loginError", "All fields is required")
+    }
+
+    const existUser = await User.findOne({ email })
     if (!existUser) {
         console.log("User not found");
         res.redirect('/login');
         return false
     }
 
-    const isPassEqual = await bcrypt.compare(req.body.password, existUser.password)
+    const isPassEqual = await bcrypt.compare(password, existUser.password)
     if (!isPassEqual) {
         console.log("Password is incorrect");
         res.redirect('/login');
