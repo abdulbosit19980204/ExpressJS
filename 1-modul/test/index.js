@@ -6,6 +6,8 @@ import session from "express-session";
 import flash from "connect-flash"
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
+import cookieParser from "cookie-parser";
+import authTokenMiddleware from "./middleware/var.js";
 const app = express()
 
 //handle barsni shu yerda sozlab olamiz
@@ -23,7 +25,9 @@ app.set('views', './views');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(express.json())
+app.use(cookieParser())
 app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
+app.use(authTokenMiddleware)
 app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)

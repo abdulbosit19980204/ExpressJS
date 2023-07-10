@@ -9,21 +9,30 @@
 
         <div class="text-end">
           <span class="badge d-flex align-items-center p-1 pe-2 text-dark-emphasis bg-light-subtle border border-dark-subtle rounded-pill">
-          <button type="button" class="btn btn-light text-dark ms-2">
-            {{#if isLogin}}
-            <a class="text-dark text-decoration-none badge  text-primary-emphasis bg-warning-subtle rounded-pill" href="/login">Login</a>
+            {{#if token}}
+             
+              <button type="button" class="btn btn-light text-dark ms-2">
+              <a class="text-dark text-decoration-none badge  text-primary-emphasis bg-danger-subtle rounded-pill" href="/login">Logout</a>
+              </button>
+              <img class="rounded-circle me-2" width="24" height="24" src="https://avatars.githubusercontent.com/u/71276545?v=4" alt="">Abdulbosit Tuychiev
+
             {{else}}
-            <a class="text-dark text-decoration-none badge  text-primary-emphasis rounded-pill" href="/login">Login</a>
+              <button type="button" class="btn btn-light text-dark ms-2">
+              {{#if isLogin}}
+              <a class="text-dark text-decoration-none badge  text-primary-emphasis bg-warning-subtle rounded-pill" href="/login">Login</a>
+              {{else}}
+              <a class="text-dark text-decoration-none badge  text-primary-emphasis rounded-pill" href="/login">Login</a>
+              {{/if}}
+              </button>
+              <button type="button" class="btn btn-light me-2">
+              {{#if isRegister}}
+              <a class="text-dark text-decoration-none badge text-primary-emphasis bg-warning-subtle rounded-pill" href="/register">Sign-up</a>
+              {{else}}
+              <a class="text-dark text-decoration-none badge text-primary-emphasis rounded-pill" href="/register">Sign-up</a>
+              {{/if}}
+              </button>
+           
             {{/if}}
-            </button>
-          <button type="button" class="btn btn-light me-2">
-            {{#if isRegister}}
-            <a class="text-dark text-decoration-none badge text-primary-emphasis bg-warning-subtle rounded-pill" href="/register">Sign-up</a>
-            {{else}}
-            <a class="text-dark text-decoration-none badge text-primary-emphasis rounded-pill" href="/register">Sign-up</a>
-            {{/if}}
-            </button>
-            <img class="rounded-circle me-2" width="24" height="24" src="https://avatars.githubusercontent.com/u/71276545?v=4" alt="">Abdulbosit Tuychiev
           </span>
         </div>
 
@@ -39,7 +48,8 @@
           <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
 
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          {{#if token}}
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                     
             <li>
               {{#if isAdd}}
@@ -75,6 +85,7 @@
             </li>
            
           </ul>
+          {{/if}}
         </div>
       </div>
     </div>
