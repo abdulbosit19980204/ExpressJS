@@ -31,15 +31,15 @@ router.post('/register', async(req, res) => {
         return
     }
 
-
-    const candidate = User.findOne({ email })
-
-    if (candidate) {
-        console.log(candidate);
-        req.flash('registerError', 'User already registred')
+    const isRegistred = await User.findOne({ email })
+    if (isRegistred) {
+        req.flash('registerError', 'User already registred');
         res.redirect('/register')
         return
     }
+
+
+
     const hashedPassword = await bcrypt.hash(password, 10)
     const userData = {
         firstName: firstName,
@@ -49,7 +49,7 @@ router.post('/register', async(req, res) => {
     }
     const user = await User.create(userData)
     const token = generateJWTToken(user._id)
-    console.log(user, token);
+    res.cookie("token", token, { httpOnly: true, secure: true })
     res.redirect('/login')
 })
 
@@ -73,7 +73,8 @@ router.post('/login', async(req, res) => {
         res.redirect('/login')
         return false
     }
-
+    const token = generateJWTToken(existUser._id)
+    res.cookie("token", token, { httpOnly: true, secure: true })
     console.log(existUser);
     res.redirect('/')
 })
