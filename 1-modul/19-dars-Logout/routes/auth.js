@@ -5,6 +5,10 @@ import { generateJWTToken } from "../services/token.js";
 const router = Router()
 
 router.get('/register', (req, res) => {
+    if (req.cookies.token) {
+        res.redirect('/')
+        return
+    }
     res.render('register', {
         title: "APP | Register ",
         isRegister: true,
@@ -13,6 +17,10 @@ router.get('/register', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
+    if (req.cookies.token) {
+        res.redirect('/')
+        return
+    }
     res.render('login', {
         title: "APP | Login",
         isLogin: true,
@@ -20,6 +28,10 @@ router.get('/login', (req, res) => {
     })
 })
 
+router.get('/logout', (req, res) => {
+    res.clearCookie("token")
+    res.redirect('/')
+})
 
 // Post methods
 
