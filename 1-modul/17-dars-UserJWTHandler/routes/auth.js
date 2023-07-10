@@ -1,6 +1,7 @@
 import { Router } from "express";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs"
+import { generateJWTToken } from "../services/token.js";
 const router = Router()
 
 router.get('/register', (req, res) => {
@@ -25,13 +26,17 @@ router.get('/login', (req, res) => {
 router.post('/register', async(req, res) => {
     const { firstName, lastName, email, password } = req.body
     if (!firstName || !lastName || !email || !password) {
-        req.flash('registerError', "All fields required")
+        req.flash('registerError', 'All fields required')
         res.redirect('/register')
         return
     }
+
+
     const candidate = User.findOne({ email })
+
     if (candidate) {
-        req.flash('registerError', "User already registred")
+        console.log(candidate);
+        req.flash('registerError', 'User already registred')
         res.redirect('/register')
         return
     }
@@ -43,7 +48,8 @@ router.post('/register', async(req, res) => {
         password: hashedPassword,
     }
     const user = await User.create(userData)
-    console.log(user);
+    const token = generateJWTToken(user._id)
+    console.log(user, token);
     res.redirect('/login')
 })
 
