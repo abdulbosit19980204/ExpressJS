@@ -3,8 +3,10 @@ import { engine, create } from "express-handlebars"
 import mongoose from "mongoose";
 import AuthRoutes from "./routes/auth.js"
 import ProductsRoutes from "./routes/products.js"
+import cookieParser from "cookie-parser";
 import session from "express-session";
 import flash from "connect-flash"
+import varMiddleware from "./middleware/var.js";
 
 // import * as dotenv from 'dotenv'
 // dotenv.config()
@@ -26,8 +28,10 @@ app.set('views', './views');
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(express.json())
+app.use(cookieParser())
 app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
 app.use(flash())
+app.use(varMiddleware)
 app.use(AuthRoutes);
 app.use(ProductsRoutes)
 

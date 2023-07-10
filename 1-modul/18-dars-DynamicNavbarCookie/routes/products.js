@@ -3,7 +3,7 @@ const router = Router()
 
 router.get('/', (req, res) => {
     res.render('index', {
-        title: "APP | Apple Store"
+        title: "APP | Apple Store",
     })
 
 })
