@@ -1,4 +1,5 @@
 import { Router } from "express";
+import Product from "../models/Product.js"
 
 const router = Router();
 router.get('/', (req, res) => {
@@ -23,8 +24,10 @@ router.get('/products', (req, res) => {
 
 //Post methods
 
-router.post('/add-product', (req, res) => {
-    console.log(req.body);
+router.post('/add-product', async(req, res) => {
+    const { title, description, image, price } = req.body
+    const products = await Product.create(req.body)
+    console.log(products);
     res.redirect('/')
 })
 
