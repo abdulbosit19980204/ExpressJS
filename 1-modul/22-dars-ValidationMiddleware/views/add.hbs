@@ -1,7 +1,12 @@
 <div class="col-4 m-auto mt-5">
       <form action="/add-product" method="post">
      <h1 class="h3 mb-3 fw-normal text-center">Adding new product</h1>
- 
+ {{#if errorAddProduct}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error!</strong> {{errorAddProduct}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+ {{/if}}
     <div class="form-floating mb-2">
       <input name="title" type="text" class="form-control" id="floatingInput" placeholder="title">
       <label for="floatingInput">Title</label>
