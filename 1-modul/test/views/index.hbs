@@ -1,1 +1,30 @@
-<h1>Main page</h1>
+{{#if products}}
+   <div class="row d-flex">
+    {{#each products}}
+          <div class="col-md-4 d-flex mb-2">
+          	<div class="blog-entry align-self-stretch">
+                <img src={{image}} alt=""class="block-20 w-75"  >
+              <a href="blog-single.html"  style="background-image: url({{image}});">
+              </a>
+              <div class="text py-4 d-block">
+              	<div class="meta">
+                  <div><a href="#" class="text-decoration-none text-muted">${{price}}</a></div>
+                  <div><a href="#" class="text-decoration-none">{{createdAt}}</a></div>
+                  <div><a href="#" class=""><span class="icon-chat"></span> 3</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#" class="text-decoration-none fw-bold text-muted">{{title}}</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                <button type="button" class="btn btn-outline-primary">Details</button>
+                <button type="button" class="btn btn-outline-secondary">Edit</button>
+                <button type="button" class="btn btn-outline-danger">Delete</button>
+              </div>
+              
+            </div>
+          </div>
+      {{/each}}    
+        </div>
+{{else}}
+    <p>Not found any products</p>
+{{/if}}

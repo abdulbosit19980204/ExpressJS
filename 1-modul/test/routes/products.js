@@ -3,9 +3,12 @@ import Product from "../models/Product.js"
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 const router = Router();
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
+    const products = await Product.find().lean()
+    console.log(products);
     res.render('index', {
-        title: "APP | Home"
+        title: "APP | Home",
+        products: products,
     })
 })
 
