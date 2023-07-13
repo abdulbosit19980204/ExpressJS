@@ -7,10 +7,10 @@ const router = Router()
 
 router.get('/', async(req, res) => {
     const products = await Product.find().lean()
-
     res.render('index', {
         title: "APP | Apple Store",
-        products: products,
+        products: products.reverse(),
+        userId: req.userId ? req.userId.toString() : null,
     })
 
 })
@@ -37,7 +37,6 @@ router.post("/add-product", userMiddleware, async(req, res) => {
         res.redirect('/add')
         return
     }
-    console.log(req.userId);
     const products = await Product.create({...req.body, user: req.userId })
     res.redirect('/')
 })

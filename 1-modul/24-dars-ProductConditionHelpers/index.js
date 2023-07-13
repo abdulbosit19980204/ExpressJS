@@ -7,16 +7,19 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import flash from "connect-flash"
 import varMiddleware from "./middleware/var.js";
-
+import userMiddleware from "./middleware/user.js";
+import hbsHelper from "./utils/index.js"
 // import * as dotenv from 'dotenv'
 // dotenv.config()
 import 'dotenv/config'
 const app = express() // app is exemplar from express
 
 //Handlebars setting
+
 const hbs = create({
     defaultLayout: 'main',
     extname: 'hbs',
+    helpers: hbsHelper,
 });
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -32,6 +35,7 @@ app.use(cookieParser())
 app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
 app.use(flash())
 app.use(varMiddleware)
+app.use(userMiddleware)
 app.use(AuthRoutes);
 app.use(ProductsRoutes)
 
