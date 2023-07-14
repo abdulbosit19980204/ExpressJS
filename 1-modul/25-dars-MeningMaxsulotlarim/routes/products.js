@@ -21,10 +21,14 @@ router.get('/add', authMiddleware, (req, res) => {
         errorAddProduct: req.flash('errorAddProduct')
     })
 })
-router.get('/products', (req, res) => {
+router.get('/products', async(req, res) => {
+    const user = req.userId ? req.userId.toString() : null
+    const myProducts = await Product.find({ user }).populate('user').lean()
+
     res.render('products', {
         title: "APP | Products",
         isProducts: true,
+        myProducts: myProducts,
     })
 })
 

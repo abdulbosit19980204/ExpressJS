@@ -9,6 +9,7 @@
             <div class="card-body">
               <p class="card-text fw-bold">{{title}}</p>
               <div class="d-flex justify-content-between align-items-center">
+                
                 <p class="text-muted fs-5">{{createdAt}}</p>
                 <small class="text-muted fs-5">$ {{price}}</small>
               </div>
@@ -16,8 +17,8 @@
             </div>
             
             <div class="card-footer">
-              <div class="btn-group  btn-group-sm" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-primary">Detail</button>
+                  <div class="btn-group  btn-group-sm" role="group" aria-label="Basic outlined example">
+                    <button type="button" class="btn btn-outline-primary">Detail</button> 
                    {{#if @root.token}}
                    {{#ifequal user @root.userId}}
                     <button type="button" class="btn btn-outline-secondary">Edit</button>
