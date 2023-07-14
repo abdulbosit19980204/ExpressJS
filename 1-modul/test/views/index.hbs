@@ -1,5 +1,6 @@
 {{#if products}}
    <div class="row d-flex">
+ 
     {{#each products}}
           <div class="col-md-4 d-flex mb-2">
           	<div class="blog-entry align-self-stretch">
@@ -15,10 +16,15 @@
                 <h3 class="heading mt-2"><a href="#" class="text-decoration-none fw-bold text-muted">{{title}}</a></h3>
                 <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
               </div>
+             
               <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                 <button type="button" class="btn btn-outline-primary">Details</button>
+               {{#if @root.token}}
+               {{#ifequal user @root.userId}}
                 <button type="button" class="btn btn-outline-secondary">Edit</button>
                 <button type="button" class="btn btn-outline-danger">Delete</button>
+              {{/ifequal}}
+              {{/if}}
               </div>
               
             </div>

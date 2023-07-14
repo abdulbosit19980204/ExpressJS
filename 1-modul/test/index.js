@@ -4,16 +4,21 @@ import mongoose from "mongoose";
 import 'dotenv/config'
 import session from "express-session";
 import flash from "connect-flash"
-import AuthRouter from "./routes/auth.js"
-import ProductsRouter from "./routes/products.js"
 import cookieParser from "cookie-parser";
 import authTokenMiddleware from "./middleware/var.js";
+import userMiddleware from "./middleware/user.js"
+import hbsHelper from "./utils/index.js"
+// Routers
+import AuthRouter from "./routes/auth.js"
+import ProductsRouter from "./routes/products.js"
+
 const app = express()
 
 //handle barsni shu yerda sozlab olamiz
 const hbs = create({
     defaultLayout: 'main',
     extname: 'hbs',
+    helpers: hbsHelper,
 })
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
@@ -28,6 +33,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
 app.use(authTokenMiddleware)
+app.use(userMiddleware)
 app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)
