@@ -1,0 +1,17 @@
+
+<hr class="featurette-divider">
+<div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1 mb-5 mt-5 fs-3 fw-bold">{{product.title}} </h2>
+        <pre class="lead pre-wrap fs-6">{{product.description}}</pre>
+      </div>
+      <div class="col-md-5">
+       <img src={{product.image}} class="img-fluid rounded-pill" alt="">
+       <div class="d-flex justify-content-between">
+       <p class="bg-warning">$ {{product.price}}</p>
+       <p>{{product.user.firstName}} {{product.user.lastName}}</p>
+       </div>
+       <p>{{formatDate product.updatedAt}}</p>
+      </div>
+    </div>
+    <hr class="featurette-divider">
