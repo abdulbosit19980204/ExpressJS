@@ -34,7 +34,15 @@
         </div>
       </form>
       {{#if token}}
-        <a type="button" class="btn btn-outline-primary me-2" href="/logout">Log out</a>
+        <a type="button" class="btn btn-outline-danger me-3 position-relative">
+          <i class="bi bi-heart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">9</span>
+        </a>
+        <a type="button" class="btn btn-outline-success me-3 position-relative">
+          <i class="bi bi-cart3"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">3</span>
+        </a>
+        <a type="button" class="btn btn-outline-primary me-2" href="/logout"><i class="bi bi-box-arrow-right"></i></a>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
