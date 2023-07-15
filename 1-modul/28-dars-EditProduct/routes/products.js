@@ -45,6 +45,15 @@ router.get('/product/:id', async(req, res) => {
     }
 })
 
+router.get('/edit-product/:id', async(req, res) => {
+    const id = req.params.id
+    const product = await Product.findById(id).lean()
+    res.render('edit-product', {
+        product: product,
+        errorEditProduct: req.flash('errorEditProduct')
+    })
+})
+
 // Post methods
 
 router.post("/add-product", userMiddleware, async(req, res) => {
@@ -58,4 +67,16 @@ router.post("/add-product", userMiddleware, async(req, res) => {
     res.redirect('/')
 })
 
+router.post("/edit-product/:id", async(req, res) => {
+    const { title, description, image, price } = req.body
+    const id = req.params.id
+    console.log(id)
+    if (!title || !description || !image || !price) {
+        req.flash('errorEditProduct', "All fields are required")
+        res.redirect(`/edit-product/${id}`)
+        return
+    }
+    await Product.findByIdAndUpdate(id, req.body)
+    res.redirect('/')
+})
 export default router
