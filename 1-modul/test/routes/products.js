@@ -5,7 +5,6 @@ import userMiddleware from "../middleware/user.js"
 const router = Router();
 router.get('/', async(req, res) => {
     const products = await Product.find().lean()
-    console.log(products);
     res.render('index', {
         title: "APP | Home",
         products: products.reverse(),
@@ -22,10 +21,14 @@ router.get('/add', authMiddleware, (req, res) => {
     })
 })
 
-router.get('/products', (req, res) => {
+router.get('/products', async(req, res) => {
+    const user = req.userId ? req.userId.toString() : null
+    const myProducts = await Product.find({ user }).populate('user').lean()
+
     res.render('products', {
         title: "APP | Products",
         isProducts: true,
+        myProducts: myProducts,
     })
 })
 
@@ -39,8 +42,6 @@ router.post('/add-product', userMiddleware, async(req, res) => {
         return
     }
     const products = await Product.create({...req.body, user: req.userId })
-
-    console.log(products);
     res.redirect('/')
 })
 

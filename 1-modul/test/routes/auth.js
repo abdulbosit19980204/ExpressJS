@@ -35,7 +35,7 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', async(req, res) => {
     const { firstName, lastName, userImage, email, password, address, country, state, zipCode } = req.body
-    if (!firstName || !lastName || !userImage || !email || !password || !address || !country || !state || !zipCode) {
+    if (!firstName || !lastName || !email || !password || !address || !country || !state || !zipCode) {
         req.flash('registerError', "All fileds required")
         res.redirect('/register')
         return

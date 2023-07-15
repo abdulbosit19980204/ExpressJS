@@ -1,1 +1,44 @@
-<h1>Products page</h1>
+{{#if myProducts}}
+   <div class="row d-flex">
+ 
+    {{#each myProducts}}
+          <div class="col-md-4 d-flex mb-2">
+          	<div class="blog-entry align-self-stretch">
+                <img src={{image}} alt=""class="block-20 w-75"  >
+              <a href="blog-single.html"  style="background-image: url({{image}});">
+              </a>
+              <div class="text py-4 d-block">
+                {{#if user.userImage}}
+                  <div class="card-footer">
+                <div class="btn-group btn-group-sm">
+                     <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
+                          <img class="rounded-circle me-1" width="24" height="24" src={{user.userImage}} alt="">
+                        {{user.firstName}} {{user.lastName}}
+                      </span>
+                </div>
+            
+              </div>
+                {{else}}
+
+                <div class="avatar bg-primary justfy-content-between">
+                    <p>{{getFullNameFirstCharacter user.firstName user.lastName}}</p>
+                </div>
+                {{user.firstName}} {{user.lastName}}
+              	{{/if}}
+                <div class="meta">
+                  <div><a href="#" class="text-decoration-none text-muted">${{price}}</a></div>
+                  <div><a href="#" class="text-decoration-none">{{createdAt}}</a></div>
+                  <div><a href="#" class=""><span class="icon-chat"></span> 3</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#" class="text-decoration-none fw-bold text-muted">{{title}}</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+         
+               
+            </div>
+          </div>
+      {{/each}}    
+        </div>
+{{else}}
+    <p>Not found any products</p>
+{{/if}}
