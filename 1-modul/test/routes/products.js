@@ -32,6 +32,14 @@ router.get('/products', async(req, res) => {
     })
 })
 
+router.get('/product/:id', async(req, res) => {
+    const id = req.params.id
+    const product = await Product.findById(id).populate('user').lean()
+    res.render('product', {
+        product: product,
+    })
+})
+
 //Post methods
 
 router.post('/add-product', userMiddleware, async(req, res) => {
