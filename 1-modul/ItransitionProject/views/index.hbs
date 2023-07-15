@@ -1,0 +1,38 @@
+{{#if products}}
+   <div class="row d-flex" style="box-sizing: border-box;">
+ 
+    {{#each products}}
+          <div class="col-md-3 d-flex mb-2  ">
+          	<div class="blog-entry align-self-stretch">
+                <img src={{image}} alt=""class="img-fluid"  >
+              
+              <div class="text py-4 d-block">
+              	<div class="meta">
+                  <div class="d-flex gap-3 justify-content-between">
+                  <div><a href="#" class="text-decoration-none text-muted">${{price}}</a></div>
+                  <div><a href="#" class="text-decoration-none">{{formatDate createdAt}}</a></div>
+                  </div>
+                </div>
+                <h3 class="heading mt-2"><a href="#" class="text-decoration-none fw-bold text-muted fs-5">{{title}}</a></h3>
+                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              </div>
+             
+              <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                <a type="button" class="btn btn-outline-primary" href="/product/{{_id}}">Details</a>
+               {{#if @root.token}}
+               {{#ifequal user @root.userId}}
+                <a type="button" class="btn btn-outline-secondary" href="/edit-product/{{_id}}">Edit</a>
+                <form action="/delete-product/{{_id}}" method="post" class="btn btn-outline-danger">
+                <button type="submit" class="deleteBtn">Delete</button>
+                </form>
+              {{/ifequal}}
+              {{/if}}
+              </div>
+              
+            </div>
+          </div>
+      {{/each}}    
+        </div>
+{{else}}
+    <p>Not found any products</p>
+{{/if}}

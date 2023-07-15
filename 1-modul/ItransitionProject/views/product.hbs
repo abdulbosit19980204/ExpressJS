@@ -1,0 +1,19 @@
+<div class="bg-body-tertiary p-5 rounded mt-3">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="mb-5">{{product.title}}</h1>
+            <pre class="lead pre-wrap fs-6">{{product.description}} </pre>
+        </div>
+        <div class="col-6">
+            <img class="img-fluid rounded" src={{product.image}} alt="">
+            <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-75 mt-2" data-bs-theme="light">
+                <li><a class="dropdown-item rounded-2 bg-light" href="#">Seller: {{product.user.firstName}} {{product.user.lastName}}</a></li>
+                <li><a class="dropdown-item rounded-2" href="#">Created at:  {{formatDate product.createdAt}}</a></li>
+                <li><a class="dropdown-item rounded-2" href="#">Updated at: {{formatDate product.updatedAt}}</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item rounded-2 bg-warning fw-bold" href="#">Price: ${{product.price}}</a></li>
+            </ul>
+        </div>
+    </div>
+    <a class="btn btn-lg btn-primary" href="/" role="button">Other »</a>
+  </div>

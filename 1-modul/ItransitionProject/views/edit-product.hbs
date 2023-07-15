@@ -1,0 +1,40 @@
+<div class="m-auto mt-5">
+    <div class="row">
+        <div class="col-6">
+      <form action="/edit-product/{{product._id}}" method="post" class="was-validated">
+     <h1 class="h3 mb-3 fw-normal text-center">Edit product</h1>
+         {{#if errorEditProduct}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{errorEditProduct}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
+    <div class="form-floating mb-2">
+      <input value="{{product.title}}" name="title" type="text" class="form-control" id="floatingInput" placeholder="title" required>
+      <label for="floatingInput">Title</label>
+    </div>
+    <div class="form-floating mb-2">
+      <textarea name="description" style="height: 150px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required>{{product.description}}</textarea>
+      <label for="floatingTextarea">Description</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input value="{{product.image}}" name="image" type="text" class="form-control" id="floatingPassword" placeholder="Image" required>
+      <label for="floatingPassword">Image</label>
+    </div>
+    <div class="input-group mb-2">
+      <span class="input-group-text">Price</span>
+      <input value="{{product.price}}" name="price" type="number" placeholder="0.000" min="0" step="0.001" class="form-control" id="floatingPassword" aria-label="Dollar amount (with dot and two decimal places)" required>
+      <span class="input-group-text">$</span>
+      <span class="input-group-text">0.000</span>
+    </div>
+      
+  
+    <button class="btn btn-primary py-2" type="submit">Edit product</button>
+    <a href="/" class="text-decoration-none btn btn-warning">Cancel</a>
+     </form>
+        </div>
+        <div class="col-6">
+            <img class="img-fluid" src={{product.image}} alt="">
+        </div>
+    </div>
+</div>
