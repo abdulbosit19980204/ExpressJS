@@ -1,9 +1,12 @@
-<div class="col-8 container ">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Sign up for free</h1>
-        
+<div class="row mt-5 mb-5">
+  <div class="col-6">
+     <img src="/loginImage.png" class="img-fluid rounded" alt="">
+  </div>
+   <div class="col-6">
+     <div class="p-5 pt-2 pb-4 border-bottom-0">
+        <h1 class="fw-bold fs-2">Create an account</h1>
+        <h1 class="fw-light fs-6">Enter your details below</h1>
+
       </div>
       
       <div class="modal-body p-5 pt-0">
@@ -15,62 +18,57 @@
         {{/if}}
         <form class="was-validated" novalidate="" action="/register" method="post"> 
           <div class="row g-3">
-              <div class="col-sm-8">
-            <div class="col">
-              <label for="firstName" class="form-label">First name</label>
-              <input  name="firstName"  type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            <div class="col-sm-6">
+              {{!-- <label for="firstName" class="form-label">First name</label> --}}
+              <input  name="firstName"  type="text" class="form-control border-0 border-bottom" id="firstName" placeholder="First name" value="" required>
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
             </div>
-
-            <div class="col">
-              <label for="lastName" class="form-label">Last name</label>
-              <input name="lastName"  type="text" class="form-control" id="lastName" placeholder="" value="" required>
+            <div class="col-sm-6">
+              {{!-- <label for="lastName" class="form-label">Last name</label> --}}
+              <input name="lastName"  type="text" class="form-control border-0 border-bottom" id="lastName" placeholder="Last name" value="" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
             </div>
-            <div class="col">
-              <label for="userImage" class="form-label">User image</label>
-              <input name="userImage"  type="text" class="form-control" id="lastName" placeholder="" value="">
-              <div class="invalid-feedback">
-                User image is required.
-              </div>
-            </div>
-            </div>
-             <div class="col-sm-4">
-              <img class="img-thumbnail" src="https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png" alt="">
-              </div>
-           
-           <div class="col-sm-6">
-              <label for="email" class="form-label">Email <span class="text-warning fs-5">*</span></label>
-              <input  name="email" type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <div class="col-sm-6">
+              {{!-- <label for="email" class="form-label">Email <span class="text-warning fs-5">*</span></label> --}}
+              <input  name="email" type="email" class="form-control border-0 border-bottom" id="email" placeholder="you@example.com" required>
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
             </div>
             <div class="col-sm-6">
-              <label for="email" class="form-label">Password <span class="text-warning fs-5">*</span></label>
-              <input  name="password" type="password" class="form-control" id="email" placeholder="secret key" required>
+              {{!-- <label for="email" class="form-label">Password <span class="text-warning fs-5">*</span></label> --}}
+              <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
               <div class="invalid-feedback">
                 Please enter a your secret key
               </div>
             </div>
-
-            <div class="col-12">
-              <label for="address" class="form-label">Address</label>
-              <input name="address"  type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+            
+            <div class="col-sm-6">
+          {{!-- <label for="userImage" class="form-label">User image</label> --}}
+          <input name="userImage"  type="text" class="form-control border-0 border-bottom" id="lastName" placeholder="User image link" value="">
+          <div class="invalid-feedback">
+            User image is required.
+          </div>
+            </div>
+            <div class="col-sm-6">
+              {{!-- <label for="address" class="form-label">Address</label> --}}
+              <input name="address"  type="text" class="form-control border-0 border-bottom" id="address" placeholder="Address" required>
               <div class="invalid-feedback">
                 Please enter your address.
               </div>
+            
             </div>
+           
 
           <div class="col-md-5">
-              <label for="country" class="form-label">Country</label>
+              {{!-- <label for="country" class="form-label">Country</label> --}}
               <select name="country" class="form-select" id="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
+                <option value="">Country</option>
+                <option>Uzbeksitan</option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid country.
@@ -78,10 +76,11 @@
             </div>
 
             <div class="col-md-4">
-              <label for="state" class="form-label">State</label>
+              {{!-- <label for="state" class="form-label">State</label> --}}
               <select name="state" class="form-select" id="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
+                <option value="">State</option>
+                <option>Tashkent</option>
+                <option>Andijan</option>
               </select>
               <div class="invalid-feedback">
                 Please provide a valid state.
@@ -89,8 +88,8 @@
             </div>
 
             <div class="col-md-3">
-              <label for="zip" class="form-label">Zip</label>
-              <input name="zipCode"  type="text" class="form-control" id="zip" placeholder="" required>
+              {{!-- <label for="zip" class="form-label">Zip</label> --}}
+              <input name="zipCode"  type="text" class="form-control" id="zip" placeholder="Zip code" required>
               <div class="invalid-feedback">
                 Zip code required.
               </div>
@@ -98,24 +97,33 @@
           </div>
 
           <hr class="my-4">
-          <button class="btn btn-primary" type="submit">Register</button>
-          <a href="/login" class="btn btn-warning">Login</a>
-          <hr class="my-4">
-          <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
-          <button class="py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+
+          <button class="py-2 mb-2 btn btn-danger rounded-3 col-8" type="submit">Create Account</button>
+          
+          {{!-- <h2 class="fs-5 fw-bold mb-3">Or Sign up with a third-party </h2> --}}
+          <button class="py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
             <i class="bi bi-twitter"></i>
-            Sign up with Twitter
+             
           </button>
           <button class="py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
             <i class="bi bi-facebook"></i>
-            Sign up with Facebook
+             
           </button>
-          <button class="py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-            <i class="bi bi-github"></i>
-            Sign up with GitHub
+          <button class="py-2 mb-2 btn btn-outline-danger rounded-3" type="submit">
+            <i class="bi bi-google"></i>
+            
           </button>
+          <hr class="my-4">
+          
+            <div class="col-8 ">
+              <span class="text-black-50">
+               Already have account? 
+              </span>
+          <a href="/login" class=" col-3 text-dark">  Login</a>
+            </div>
+            
+         
         </form>
       </div>
-    </div>
   </div>
 </div>
