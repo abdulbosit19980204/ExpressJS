@@ -1,0 +1,48 @@
+.dark {
+    background-color: black;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* avatar */
+
+.avatar {
+    width: 50px;
+    height: 50PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+.avatar p {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* pre-wrap */
+
+.pre-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
