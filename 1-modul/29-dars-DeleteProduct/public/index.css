@@ -46,3 +46,13 @@ input[type=number] {
     word-wrap: break-word;
     max-width: 100%;
 }
+
+.deleteBtn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.btn:hover {
+    color: white;
+}

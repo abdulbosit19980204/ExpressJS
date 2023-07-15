@@ -22,7 +22,9 @@
                    {{#if @root.token}}
                    {{#ifequal user @root.userId}}
                     <a type="button" class="btn btn-outline-secondary" href="/edit-product/{{_id}}">Edit</a>
-                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <form  action="/delete-product/{{_id}}" class="btn btn-outline-danger m-0" method="post">
+                    <button type="submit" class="deleteBtn">Delete</button>
+                    </form>
                    {{/ifequal}}
                   {{/if}}
                 </div>
