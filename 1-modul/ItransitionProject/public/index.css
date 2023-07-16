@@ -72,3 +72,8 @@ input[type=number] {
     height: auto;
     object-fit: cover;
 }
+
+#subscribeEmail::placeholder {
+    /* Specify the color you want */
+    color: rgb(106, 106, 106);
+}

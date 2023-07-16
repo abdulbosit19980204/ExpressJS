@@ -15,8 +15,8 @@
                 </div>
                 <div><a href="#" class="text-decoration-none m-0 p-0 text-dark fw-medium bg-light rounded p-1">{{formatDate createdAt}}</a></div>
                   </div>
-                <h3 class="heading mt-2"><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-5 text-dark">{{truncateText title 0 20}}...</a></h3>
-              <p>{{truncateText description 0 100}}...</p>
+                <h3 class="heading mt-2"><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-5 text-dark font-monospace">{{truncateText title 0 20}}...</a></h3>
+              <p class="lean">{{truncateText description 0 100}}...</p>
               </div>
               <div class="btn-group btn-group-sm">
                     
@@ -32,7 +32,11 @@
       {{/each}}    
         </div>
 {{else}}
-    <p>Not found any products</p>
+    <div class="container">
+      <h1 class="fw-bold  display-1">404 Not Found</h1>
+      <p class="lead">Your visited page not found. You may go home page.</p>
+      <a class="btn btn-danger col-4 p-3 mt-3" href="/">Back to home page</a>
+    </div>
 {{/if}}
 
 
