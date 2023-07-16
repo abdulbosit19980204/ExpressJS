@@ -1,35 +1,15 @@
 {{#if myProducts}}
-   <div class="row d-flex">
+   <div class="row d-flex mt-5 justify-content-start mb-5">
  
     {{#each myProducts}}
-          <div class="col-md-3 d-flex mb-2">
-          	<div class="blog-entry align-self-stretch">
-                <img src={{image}} alt=""class="img-fluid"  >
-              <div class="text py-4 d-block">
-                {{#if user.userImage}}
-                  <div class="card-footer justify-content-between d-flex">
-                <div class="btn-group btn-group-sm ">
-                     <span class="badge d-flex align-items-center p-1 pe-2 text-info-emphasis bg-info-subtle border border-info-subtle rounded-pill">
-                          <img class="rounded-circle me-1" width="24" height="24" src={{user.userImage}} alt="">
-                        {{user.firstName}} {{user.lastName}}
-                      </span>
+          <div class="col-sm-2 d-flex mb-2">
+          	<div class="">
+                <div class=" productListImage">
+                  <img src={{image}} alt=""class="img-thumbnail border-0"  >
                 </div>
-                 <div><a href="#" class="text-decoration-none m-0 p-0">{{formatDate createdAt}}</a></div>
-                
-                 </div>
-                {{else}}
-                <div class="card-footer justify-content-between d-flex">
-                  <div class="d-flex gap-3 align-items-center">
-                  <div class="avatar bg-primary">
-                    <p>{{getFullNameFirstCharacter user.firstName user.lastName}}</p>
-                  </div>
-                  <p class="m-0 p-0">{{user.firstName}} {{user.lastName}}</p> 
-                  </div>
+           
+              <div class="text py-4 ">
                 <div><a href="#" class="text-decoration-none m-0 p-0">{{formatDate createdAt}}</a></div>
-                
-                 </div>
-                
-              	{{/if}}
                 <div class="meta">
                   <div><a href="#" class="text-decoration-none text-muted">${{price}}</a></div>
                   {{!-- <div><a href="#" class=""><span class="icon-chat"></span> 3</a></div> --}}
@@ -46,3 +26,5 @@
 {{else}}
     <p>Not found any products</p>
 {{/if}}
+
+
