@@ -78,6 +78,6 @@ router.post('/edit-product/:id', async(req, res) => {
 router.post('/delete-product/:id', async(req, res) => {
     const id = req.params.id
     await Product.findByIdAndRemove(id)
-    res.redirect('/')
+    res.redirect('/products')
 })
 export default router

@@ -1,5 +1,5 @@
 {{#if products}}
-   <div class="row d-flex mt-5 justify-content-end mb-5">
+   <div class="row d-flex mt-5 justify-content-center mb-5">
  
     {{#each products}}
         <div class="col-sm-2 d-flex mb-2 card m-1 border-0 mt-5">
@@ -25,7 +25,7 @@
                   {{!-- <div><a href="#" class="text-decoration-none">{{formatDate createdAt}}</a></div> --}}
                   </div>
                 </div>
-                <h3 class="heading mt-2 text-truncate"><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-6">{{title}}</a></h3>
+                <h3 class="heading mt-2 "><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-6">{{truncateText title 0 35}}...</a></h3>
                 <p class=" text-truncate">{{description}}</p>
               </div>
              

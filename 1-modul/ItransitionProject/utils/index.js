@@ -14,5 +14,9 @@ export default {
 
     formatDate(date) {
         return moment(date).format("DD MMM, YYYY")
+    },
+    truncateText(text, start, end) {
+        return text.slice(start, end)
     }
+
 }

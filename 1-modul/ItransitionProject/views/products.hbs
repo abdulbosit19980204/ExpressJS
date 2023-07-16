@@ -1,25 +1,33 @@
 {{#if myProducts}}
-   <div class="row d-flex mt-5 justify-content-start mb-5">
+   <div class="row d-flex mt-5 justify-content-center mb-5">
  
     {{#each myProducts}}
-          <div class="col-sm-2 d-flex mb-2">
+          <div class="col-sm-3 d-flex mb-2 align-items-end">
           	<div class="">
-                <div class=" productListImage">
+              <div class=" productListImage">
                   <img src={{image}} alt=""class="img-thumbnail border-0"  >
-                </div>
-           
-              <div class="text py-4 ">
-                <div><a href="#" class="text-decoration-none m-0 p-0">{{formatDate createdAt}}</a></div>
-                <div class="meta">
-                  <div><a href="#" class="text-decoration-none text-muted">${{price}}</a></div>
-                  {{!-- <div><a href="#" class=""><span class="icon-chat"></span> 3</a></div> --}}
-                </div>
-                <h3 class="heading mt-2"><a href="#" class="text-decoration-none fw-bold text-muted fs-5 text-dark">{{title}}</a></h3>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
               </div>
-         
-               
+              <div class="text py-4 ">
+                <div class="d-flex justify-content-between">
+                <div class="row">
+                  <div class="mb-3 "><a href="#" class="text-decoration-none fw-bold text-dark bg-warning rounded p-1"> ${{price}} </a></div>
+                  <div class=""><a href="#" class="text-decoration-none fw-medium rounded bg-light p-1"><span class="bi bi-cart-dash"></span> 3</a></div>
+                </div>
+                <div><a href="#" class="text-decoration-none m-0 p-0 text-dark fw-medium bg-light rounded p-1">{{formatDate createdAt}}</a></div>
+                  </div>
+                <h3 class="heading mt-2"><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-5 text-dark">{{truncateText title 0 20}}...</a></h3>
+              <p>{{truncateText description 0 100}}...</p>
+              </div>
+              <div class="btn-group btn-group-sm">
+                    
+                    <a type="button" class="btn btn-outline-secondary" href="/product/{{_id}}"><i class="bi bi-eye"></i></a>
+                    <a type="button" class="btn btn-outline-secondary" href="/edit-product/{{_id}}"><i class="bi bi-pencil-square"></i></a>
+                          <form action="/delete-product/{{_id}}" method="post" class="btn btn-outline-danger">
+                            <button type="submit" class="deleteBtn"><i class="bi bi-trash"></i></button>
+                          </form>   
+              </div> 
             </div>
+            
           </div>
       {{/each}}    
         </div>
