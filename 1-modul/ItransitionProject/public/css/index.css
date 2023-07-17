@@ -77,3 +77,27 @@ input[type=number] {
     /* Specify the color you want */
     color: rgb(106, 106, 106);
 }
+
+.product-label {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.product-label>span {
+    border: 2px solid;
+    padding: 2px 10px;
+    font-size: 12px;
+}
+
+.product-label>span.sale {
+    background-color: #FFF;
+    border-color: #D10024;
+    color: #D10024;
+}
+
+.product-label>span.new {
+    background-color: #D10024;
+    border-color: #D10024;
+    color: #FFF;
+}

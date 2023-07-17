@@ -4,13 +4,23 @@ import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 const router = Router();
 router.get('/', async(req, res) => {
-    const products = await Product.find().lean()
+    const products = await Product.find().limit(5).lean()
     res.render('index', {
         title: "APP | Home",
         products: products.reverse(),
         userId: req.userId ? req.userId.toString() : null,
     })
+
 })
+router.get('/all', async(req, res) => {
+    const products = await Product.find().lean()
+    res.render('all', {
+        title: "APP | All",
+        products: products.reverse(),
+        userId: req.userId ? req.userId.toString() : null,
+    })
+})
+
 
 router.get('/add', authMiddleware, (req, res) => {
 

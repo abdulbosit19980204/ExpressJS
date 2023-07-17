@@ -5,72 +5,27 @@
 </div>
   <div class="col-9">{{> carousel}}</div>
   <div class="col-12 mt-5 pt-5">
-   
-    {{>hotdeal}}
+       {{>hotdeal}}
   </div>
-  <div class="col-12">Browse By Category</div>
-  <div class="col-12">Best selling Products</div>
-  <div class="col-12">Buy now</div>
-  <div class="col-12">
-    
-
-{{#if products}}
-   <div class="row d-flex mt-5 justify-content-center mb-5 align-items-end">
- 
-    {{#each products}}
-        <div class="col-sm-2 d-flex mb-2 card m-1 border-0 mt-5">
-          	<div class="">
-                <div class=" productListImage">
-                <img src={{image}} alt=""class="img-thumbnail border-0"  >
-                </div>
-              
-              <div class=" py-4 d-block">
-              	<div class="meta">
-                  <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                      {{!-- <a type="button" class="btn btn-outline-primary" href="/product/{{_id}}"><i class="bi bi-eye"></i></a> --}}
-                      {{#if @root.token}}
-                        {{#ifequal user @root.userId}}
-                          <a type="button" class="btn btn-outline-secondary" href="/edit-product/{{_id}}"><i class="bi bi-pencil-square"></i></a>
-                          <form action="/delete-product/{{_id}}" method="post" class="btn btn-outline-danger">
-                            <button type="submit" class="deleteBtn"><i class="bi bi-trash"></i></button>
-                          </form>
-                        {{/ifequal}}
-                      {{/if}}
-                  </div>
-                  <div class="d-flex gap-3 justify-content-between">
-                  {{!-- <div><a href="#" class="text-decoration-none">{{formatDate createdAt}}</a></div> --}}
-                  </div>
-                </div>
-                <h3 class="heading mt-2 "><a href="/product/{{_id}}" class="text-decoration-none fw-bold text-dark fs-6 font-monospace">{{truncateText title 0 35}}...</a></h3>
-                <p class=" fw-normal lean">{{truncateText description 0 50}} <span class="text-danger fs-5">...</span> </p>
-              </div>
-             
-             
-            </div>
-           
-            <div class="d-flex justify-content-between gap-5 mb-3">
-              <span class="fs-5 fw-bold">${{price}} </span>
-              <div class="btn-group btn-group-sm">
-                <button class="btn btn-outline-danger"><i class="bi bi-dash"></i></button>
-                  <span class="btn btn-outline-danger">1</span>
-                <button class="btn btn-outline-danger"><i class="bi bi-plus"></i></button>
-              </div>
-            </div>
-            <div class="d-flex mt-2 justify-content-between">
-              <button class="btn btn-danger col-9"><i class="bi bi-cart-plus"></i> Add to cart</button>
-              <button class="btn btn-outline-danger"><i class="bi bi-heart"></i></button>
-            </div>
-        </div>
-    {{/each}}    
-        </div>
-{{else}}
-    <div class="container mt-5 mb-5 p-5">
-      <h1 class="fw-bold  display-1">404 Not Found</h1>
-      <p class="lead">Your visited page not found. You may go home page.</p>
-      <a class="btn btn-danger col-4 p-3 mt-3" href="/">Back to home page</a>
+  <hr>
+  <div class="col-12 mt-4">
+      {{> categories}}
+  </div>
+    <hr>
+  <div class="col-12 mt-4">Best selling Products</div>
+  <div class="col-12 mt-4">Buy now</div>
+  <div class="col-12 mt-4">
+     <div class="d-flex align-items-center fs-5 fw-bold">
+    <div class="bg-danger rounded" style="width: 20px; height: 50px;"></div><span class="ms-3 fs-4 font-monospace text-danger">Our Products</span>
     </div>
-
-{{/if}}
+    <div class=" d-flex justify-content-between">
+    <h1>Explore Our Products</h1>
+     <div class="fs-3">
+        <a href="#"> <i class="bi  bi-arrow-left-circle-fill  text-secondary"></i></a>
+        <a href="#"> <i class="bi  bi-arrow-right-circle-fill text-secondary"></i></a>
+    </div>
+    </div>
+    {{> product}}
   </div>
   <div class="col-12">New Arrival</div>
 </div>
