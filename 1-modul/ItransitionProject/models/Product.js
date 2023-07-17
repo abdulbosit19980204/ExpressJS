@@ -10,5 +10,6 @@ const productSchema = new Schema({
     timestamps: true
 })
 
+productSchema.index({ title: 'text', description: 'text' }); // Create text index on 'name' and 'description' fields
 const Product = model('Product', productSchema)
 export default Product

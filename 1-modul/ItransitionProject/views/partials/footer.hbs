@@ -27,8 +27,12 @@
       <div class="col-6 col-md-2 mb-3">
         <h5>Account</h5>
         <ul class="nav flex-column ">
+          {{#if token}}
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light-emphasis">My Account</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light-emphasis"><a href="/logout" class="text-decoration-none text-light-emphasis">Logout</a></a></li>
+          {{else}}
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light-emphasis"><a href="/login" class="text-decoration-none text-light-emphasis">Login</a>  / <a href="register" class="text-decoration-none text-light-emphasis">Register</a> </a></li>
+          {{/if}}
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light-emphasis">Wishlist</a></li>
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light-emphasis">Shop</a></li>
         </ul>

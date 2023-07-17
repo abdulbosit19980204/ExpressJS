@@ -33,11 +33,18 @@ router.get('/products', async(req, res) => {
 })
 
 router.get('/product/:id', async(req, res) => {
-    const id = req.params.id
-    const product = await Product.findById(id).populate('user').lean()
-    res.render('product', {
-        product: product,
-    })
+    try {
+        const id = req.params.id
+        const product = await Product.findById(id).populate('user').lean()
+        res.render('product', {
+            product: product,
+        })
+
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        res.status(500).send('Internal Server Error');
+    }
+
 })
 
 router.get('/edit-product/:id', async(req, res) => {
@@ -48,6 +55,17 @@ router.get('/edit-product/:id', async(req, res) => {
         errorEditProduct: req.flash('errorEditProduct'),
     })
 })
+
+router.get('/search', async(req, res) => {
+    const searchedText = req.body.searchedText
+        // const searchedProducts = await Product.find(searchedText).lean()
+
+    res.render('search', {
+        title: "APP | Searched",
+        // products: searchedProducts.reverse(),
+    })
+})
+
 
 //Post methods
 
@@ -80,4 +98,30 @@ router.post('/delete-product/:id', async(req, res) => {
     await Product.findByIdAndRemove(id)
     res.redirect('/products')
 })
+
+router.post('/search', async(req, res) => {
+    const searchedText = req.body.searchedText; // Assuming the search query is in the 'searchedText' property of the request body
+    if (searchedText != "") {
+        try {
+            const regex = new RegExp(searchedText, 'gi'); // 'gi' flags make the search global and case-insensitive
+            const products = await Product.find({
+                $or: [
+                    { title: { $regex: regex } },
+                    { description: { $regex: regex } }
+                ]
+            }).lean();
+            res.render('search', {
+                title: 'APP | Searched',
+                products: products.reverse(),
+                userId: req.userId ? req.userId.toString() : null,
+            });
+        } catch (err) {
+            console.error('Error searching for products:', err);
+            res.status(500).send('Internal Server Error');
+        }
+    } else {
+        res.redirect('/')
+    }
+});
+
 export default router
