@@ -17,6 +17,25 @@ export default {
     },
     truncateText(text, start, end) {
         return text.slice(start, end)
-    }
+    },
+    nextPage(currentPage, totalPages) {
+        if (currentPage != totalPages) {
+            return parseInt(currentPage) + 1
+        }
+        return 1
+    },
+    prevPage(currentPage, totalPages) {
+        if (currentPage != 0) {
+
+            return parseInt(currentPage) - 1
+        }
+        currentPage = totalPages
+        return currentPage
+
+    },
+
+
+
+
 
 }

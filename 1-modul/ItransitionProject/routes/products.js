@@ -42,7 +42,8 @@ router.get('/product/:id', async(req, res) => {
 
     } catch (error) {
         console.error('Error searching for products:', error);
-        res.status(500).send('Internal Server Error');
+        // res.status(500).send('Internal Server Error');
+        res.redirect('/')
     }
 
 })
@@ -57,12 +58,9 @@ router.get('/edit-product/:id', async(req, res) => {
 })
 
 router.get('/search', async(req, res) => {
-    const searchedText = req.body.searchedText
-        // const searchedProducts = await Product.find(searchedText).lean()
-
     res.render('search', {
         title: "APP | Searched",
-        // products: searchedProducts.reverse(),
+        products: products.reverse(),
     })
 })
 
@@ -99,29 +97,51 @@ router.post('/delete-product/:id', async(req, res) => {
     res.redirect('/products')
 })
 
+// POST route for search
 router.post('/search', async(req, res) => {
     const searchedText = req.body.searchedText; // Assuming the search query is in the 'searchedText' property of the request body
-    if (searchedText != "") {
-        try {
-            const regex = new RegExp(searchedText, 'gi'); // 'gi' flags make the search global and case-insensitive
-            const products = await Product.find({
+    const limit = 5; // Specify the desired limit
+    let page = req.body.page || 1; // Get the current page number from the request body or default to 1
+
+    try {
+
+        const regex = new RegExp(searchedText, 'gi'); // 'gi' flags make the search global and case-insensitive
+
+        const totalDocuments = await Product.countDocuments({
+            $or: [
+                { name: { $regex: regex } },
+                { description: { $regex: regex } }
+            ]
+        });
+
+        const totalPages = Math.ceil(totalDocuments / limit); // Calculate the total number of pages
+
+        const skip = (page - 1) * limit; // Calculate the number of documents to skip based on the current page
+
+        const products = await Product.find({
                 $or: [
-                    { title: { $regex: regex } },
+                    { name: { $regex: regex } },
                     { description: { $regex: regex } }
                 ]
-            }).lean();
-            res.render('search', {
-                title: 'APP | Searched',
-                products: products.reverse(),
-                userId: req.userId ? req.userId.toString() : null,
-            });
-        } catch (err) {
-            console.error('Error searching for products:', err);
-            res.status(500).send('Internal Server Error');
-        }
-    } else {
+            })
+            .skip(skip)
+            .limit(limit)
+            .lean();
+
+        res.render('search', {
+            title: 'APP | Searched',
+            products: products.reverse(),
+            userId: req.userId ? req.userId.toString() : null,
+            currentPage: page, // Pass the current page to the view for rendering
+            totalPages: totalPages, // Pass the total number of pages to the view for rendering
+        });
+    } catch (err) {
+        console.error('Error searching for products:', err);
+        //res.status(500).send('Internal Server Error');
         res.redirect('/')
     }
 });
+// POST route for search
+
 
 export default router
