@@ -78,7 +78,7 @@ router.get('/search', async(req, res) => {
 //Post methods
 
 router.post('/add-product', userMiddleware, async(req, res) => {
-    const { title, description, image, price } = req.body
+    const { title, description, image, price, discount, productType } = req.body
     if (!title || !description || !image || !price) {
         req.flash('errorAddProduct', 'All fields are required')
         res.redirect('/add')
@@ -89,7 +89,7 @@ router.post('/add-product', userMiddleware, async(req, res) => {
 })
 
 router.post('/edit-product/:id', async(req, res) => {
-    const { title, description, image, price } = req.body
+    const { title, description, image, price, discount, productType } = req.body
     const id = req.params.id
     if (!title || !description || !image || !price) {
         req.flash('errorEditProduct', 'All fields are required')

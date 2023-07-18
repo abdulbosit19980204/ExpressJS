@@ -33,8 +33,21 @@ export default {
         return currentPage
 
     },
+    countDiscount(price, discount) {
+        const discountAmount = price - (price * (discount / 100));
+        return discountAmount.toFixed(2);
+    },
+    isNew(updatedAt) {
+        const now = new Date();
+        const oneWeekInMillis = 3 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+        const timeDifference = now - updatedAt;
 
-
+        if (timeDifference > oneWeekInMillis) {
+            return false;
+        } else {
+            return true;
+        }
+    },
 
 
 

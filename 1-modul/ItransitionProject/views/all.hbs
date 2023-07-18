@@ -7,8 +7,12 @@
                 <div class=" productListImage">
                 <img src={{image}} alt=""class="img-thumbnail border-0"  >
                 <div class="product-label">
-                    <span class="sale">-30%</span>
+                     {{#if discount}}
+                    <span class="sale">-{{discount}}%</span>
+                    {{/if}}
+                    {{#if (isNew updatedAt)}} 
                     <span class="new">NEW</span>
+                    {{/if}}
                 </div>
                 </div>
               
@@ -37,8 +41,15 @@
             </div>
            
             <div class="d-flex justify-content-between gap-5 mb-3">
-              <span class="fs-5 fw-bold">${{price}} </span>
-              <div class="btn-group btn-group-sm">
+              {{#if discount}}
+              <div class="">
+                <span class="fs-5 fw-bold">${{countDiscount price discount}} </span>
+                <span class="bg-warning text-mute text-decoration-line-through"> ${{price}} </span>
+              </div>
+              {{else}}
+              <span class="fs-5 fw-bold ">${{price}} </span>
+              {{/if}}
+              <div class="btn-group btn-group-sm flex-wrap align-items-center">
                 <button class="btn btn-outline-danger"><i class="bi bi-dash"></i></button>
                   <span class="btn btn-outline-danger">1</span>
                 <button class="btn btn-outline-danger"><i class="bi bi-plus"></i></button>

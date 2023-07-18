@@ -5,7 +5,10 @@ const productSchema = new Schema({
     description: { type: String, require: true },
     image: { type: String, require: true },
     price: { type: Number, require: true },
-    user: { type: Schema.Types.ObjectId, ref: 'User' }
+    discount: { type: Number, require: false },
+    type: { type: String, require: false },
+    // sold: { type: Number, require: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
 }, {
     timestamps: true
 })
