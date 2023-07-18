@@ -4,42 +4,68 @@ import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 const router = Router();
 router.get('/', async(req, res) => {
-    const products = await Product.find().limit(5).lean()
-    res.render('index', {
-        title: "APP | Home",
-        products: products.reverse(),
-        userId: req.userId ? req.userId.toString() : null,
-    })
+    try {
+        const products = await Product.find().limit(5).lean()
+        res.render('index', {
+            title: "APP | Home",
+            products: products.reverse(),
+            userId: req.userId ? req.userId.toString() : null,
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 
 })
 router.get('/all', async(req, res) => {
-    const products = await Product.find().lean()
-    res.render('all', {
-        title: "APP | All",
-        products: products.reverse(),
-        userId: req.userId ? req.userId.toString() : null,
-    })
+    try {
+
+        const products = await Product.find().lean()
+        res.render('all', {
+            title: "APP | All",
+            products: products.reverse(),
+            userId: req.userId ? req.userId.toString() : null,
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 })
 
 
 router.get('/add', authMiddleware, (req, res) => {
+    try {
 
-    res.render('add', {
-        title: "APP | Add Products",
-        isAdd: true,
-        errorAddProduct: req.flash('errorAddProduct'),
-    })
+        res.render('add', {
+            title: "APP | Add Products",
+            isAdd: true,
+            errorAddProduct: req.flash('errorAddProduct'),
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 })
 
 router.get('/products', async(req, res) => {
-    const user = req.userId ? req.userId.toString() : null
-    const myProducts = await Product.find({ user }).populate('user').lean()
+    try {
 
-    res.render('products', {
-        title: "APP | Products",
-        isProducts: true,
-        myProducts: myProducts,
-    })
+        const user = req.userId ? req.userId.toString() : null
+        const myProducts = await Product.find({ user }).populate('user').lean()
+
+        res.render('products', {
+            title: "APP | Products",
+            isProducts: true,
+            myProducts: myProducts.reverse(),
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 })
 
 router.get('/product/:id', async(req, res) => {
@@ -59,19 +85,33 @@ router.get('/product/:id', async(req, res) => {
 })
 
 router.get('/edit-product/:id', async(req, res) => {
-    const id = req.params.id
-    const product = await Product.findById(id).lean()
-    res.render('edit-product', {
-        product: product,
-        errorEditProduct: req.flash('errorEditProduct'),
-    })
+    try {
+
+        const id = req.params.id
+        const product = await Product.findById(id).lean()
+        res.render('edit-product', {
+            product: product,
+            errorEditProduct: req.flash('errorEditProduct'),
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 })
 
 router.get('/search', async(req, res) => {
-    res.render('search', {
-        title: "APP | Searched",
-        products: products.reverse(),
-    })
+    try {
+
+        res.render('search', {
+            title: "APP | Searched",
+            products: products.reverse(),
+        })
+    } catch (error) {
+        console.error('Error searching for products:', error);
+        //res.status(500).send('Internal Server Error');
+        res.redirect('/')
+    }
 })
 
 
@@ -97,7 +137,8 @@ router.post('/edit-product/:id', async(req, res) => {
         return
     }
 
-    await Product.findByIdAndUpdate(id, req.body)
+    const pro = await Product.findByIdAndUpdate(id, req.body)
+    console.log(pro);
     res.redirect('/')
 })
 

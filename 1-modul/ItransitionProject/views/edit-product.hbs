@@ -34,16 +34,13 @@
       <span class="input-group-text">%</span>
     </div>
     
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Product type
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
+    <select class="form-select mb-2" aria-label="Default select example" name="productType">
+      <option selected>{{product.productType}}</option>
+      <option value="Electronic">Electronic</option>
+      <option value="Phone">Phone</option>
+      <option value="Wear">Wear</option>
+      <option value="Healthy">Healthy</option>
+    </select>
 
       
   
