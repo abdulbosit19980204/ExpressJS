@@ -11,6 +11,7 @@ import hbsHelper from "./utils/index.js"
 // Routers
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
+import TradeRouter from "./routes/trade.js"
 
 const app = express()
 
@@ -37,6 +38,7 @@ app.use(userMiddleware)
 app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)
+app.use(TradeRouter)
 
 
 

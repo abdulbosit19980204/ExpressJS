@@ -5,7 +5,7 @@ import userMiddleware from "../middleware/user.js"
 const router = Router();
 router.get('/', async(req, res) => {
     try {
-        const products = await Product.find().limit(5).lean()
+        const products = await Product.find({ discount: { $gt: 0 } }).limit(5).lean()
         res.render('index', {
             title: "APP | Home",
             products: products.reverse(),
@@ -137,8 +137,7 @@ router.post('/edit-product/:id', async(req, res) => {
         return
     }
 
-    const pro = await Product.findByIdAndUpdate(id, req.body)
-    console.log(pro);
+    await Product.findByIdAndUpdate(id, req.body)
     res.redirect('/')
 })
 
@@ -160,8 +159,9 @@ router.post('/search', async(req, res) => {
 
         const totalDocuments = await Product.countDocuments({
             $or: [
-                { name: { $regex: regex } },
-                { description: { $regex: regex } }
+                { title: { $regex: regex } },
+                { description: { $regex: regex } },
+                { productType: { $regex: regex } },
             ]
         });
 
@@ -171,15 +171,16 @@ router.post('/search', async(req, res) => {
 
         const products = await Product.find({
                 $or: [
-                    { name: { $regex: regex } },
-                    { description: { $regex: regex } }
+                    { title: { $regex: regex } },
+                    { description: { $regex: regex } },
+                    { productType: { $regex: regex } },
                 ]
             })
             .skip(skip)
             .limit(limit)
             .lean();
 
-        res.render('search', {
+        res.render('all', {
             title: 'APP | Searched',
             products: products.reverse(),
             userId: req.userId ? req.userId.toString() : null,
