@@ -1,5 +1,5 @@
-<div class="col-4 m-auto mt-5">
-      <form action="/add-product" method="post" class="was-validated">
+<div class="col-7 m-auto mt-5">
+      <form action="/add-product" method="post" class="">
      <h1 class="h3 mb-3 fw-normal text-center">Adding new product</h1>
  
     <div class="form-floating mb-2">
@@ -7,8 +7,8 @@
       <label for="floatingInput">Title</label>
     </div>
     <div class="form-floating mb-2">
-      <textarea name="description" style="height: 150px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
-      <label for="floatingTextarea">Description</label>
+      <textarea name="description" style="height: 150px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" ></textarea>
+      {{!-- <label for="floatingTextarea">Description</label> --}}
     </div>
     <div class="form-floating mb-2">
       <input name="image" type="text" class="form-control" id="floatingPassword" placeholder="Image" required>
@@ -25,13 +25,20 @@
       <input name="discount" type="number" placeholder="0" min="0" step="0.001" class="form-control" id="floatingPassword" aria-label="input the discount" >
       <span class="input-group-text">%</span>
     </div>
-    <select class="form-select mb-2" aria-label="Default select example" name="productType">
+   
+  
+       <select class="form-select mb-2" aria-label="Default select example" name="productType">
       <option selected>Select the product type</option>
       <option value="Electronic">Electronic</option>
       <option value="Phone">Phone</option>
-      <option value="Wear">Wear</option>
-      <option value="Healthy">Healthy</option>
+      <option value="Computers">Computers</option>
+      <option value="Smart watch">Smart watch</option>
+      <option value="Camera">Camera</option>
+      <option value="HeadPhones">HeadPhones</option>
     </select>
+ 
+    
+   
     <button class="btn btn-primary py-2" type="submit">Add product</button>
     <a href="/" class="text-decoration-none btn btn-warning">Cancel</a>
      </form>
