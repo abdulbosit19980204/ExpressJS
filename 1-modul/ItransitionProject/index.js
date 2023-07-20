@@ -12,6 +12,7 @@ import hbsHelper from "./utils/index.js"
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
 import TradeRouter from "./routes/trade.js"
+import CartRouter from "./routes/cartRoutes.js"
 
 
 
@@ -43,6 +44,7 @@ app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)
 app.use(TradeRouter)
+app.use(CartRouter)
 
 
 

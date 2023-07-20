@@ -57,7 +57,7 @@ router.get('/products', async(req, res) => {
         const myProducts = await Product.find({ user }).populate('user').lean()
 
         res.render('products', {
-            title: "APP | Products",
+            title: "APP | My Products",
             isProducts: true,
             myProducts: myProducts.reverse(),
         })
