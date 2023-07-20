@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs"
 import { generateJWTToken } from "../services/token.js"
 import signMiddleware from "../middleware/sign.js"
+import passport from "passport";
 const router = Router()
 
 
@@ -30,6 +31,13 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+// regiter by google
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+    // Redirect to the dashboard page after successful login
+    res.redirect('/');
+});
 // Post methods
 
 
