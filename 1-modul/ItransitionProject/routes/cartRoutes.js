@@ -29,5 +29,11 @@ router.get('/my-cart', async(req, res) => {
 })
 
 
+router.post('/delete-product-from-cart/:id', async(req, res) => {
+    const id = req.params.id
+    await CartItem.findByIdAndRemove(id)
+    res.redirect('/my-cart')
+})
+
 
 export default router
