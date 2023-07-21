@@ -1,11 +1,13 @@
 import { Router } from "express";
 import Product from "../models/Product.js"
+import LikedItem from "../models/Liked.js";
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 const router = Router();
 router.get('/', async(req, res) => {
     try {
         const products = await Product.find({ discount: { $gt: 0 } }).limit(10).lean()
+
         res.render('index', {
             title: "APP | Home",
             products: products.reverse(),

@@ -17,9 +17,12 @@ router.get('/my-cart', async(req, res) => {
     try {
         const user = req.userId ? req.userId.toString() : null
         const buyProducts = await CartItem.find({ user }).populate('user').populate('product').lean()
+        const cartLength = buyProducts.length;
         res.render('myCart', {
             title: "APP | My Cart",
             buyProducts: buyProducts.reverse(),
+            isCart: true,
+            cartLength: cartLength,
         })
     } catch (error) {
         console.error('Error searching for products:', error);

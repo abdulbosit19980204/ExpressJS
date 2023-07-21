@@ -7,7 +7,6 @@
       <th scope="col">Product</th>
       <th scope="col">Title</th>
       <th scope="col">Price</th>
-      <th scope="col">Quantity</th>
       <th scope="col">Seller</th>
     </tr>
   </thead>
@@ -15,9 +14,9 @@
  {{#each likedProducts}} 
     <tr>
     <th scope="row">{{plus @index 1}}
-      <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
- </div>
+      <div >
+        <a href=""><i class="text-danger bi bi-heart-fill"></i></a>
+      </div>
  <form action="/delete-product-from-liked/{{_id}}" method="post">
   <button type="submit" class="deleteBtn"><i class="bi bi-x text-danger"></i></button>
  </form>   
@@ -33,13 +32,7 @@
       {{else}}
       <td class="fw-semibold">{{product.price}}$</td>
       {{/if}}
-      <td>
-       <input value="1" name="quantity" style="width: 30px;" type="number" placeholder="1" min="0" step="1"  id="quantity">
-      </td>
-      <td>
-        {{!-- {{#each buyProducts}}
-        {{countTotalPrice (countDiscount product.price productdiscount)}}
-        {{/each}}$ --}}
+     <td>
         {{#if user.userImage}}
         <img src="{{user.userImage}}" alt="userimage" class="rounded-circle img-thumbnail" style="width: 50px; height: 50px; border: 3px solid rgb(255, 0, 0);">
         {{user.firstName}}  {{user.lastName}}
@@ -60,38 +53,6 @@
 {{/if}}
 <div class="d-flex justify-content-between mt-3 mb-5">
     <a class="btn btn-outline-dark" href="/all">Return To Shop</a>
-    <button class="btn btn-outline-dark">Update Cart</button>
+    <a class="btn btn-outline-dark" href="my-cart">Update Cart</a>
 </div>
 
-<div class="row d-flex justify-content-between mt-3 mb-5">
-        <div class="col-4">
-          <div class="input-group">
-        <input class="form-control rounded-3" name="coupon" type="text" placeholder="Coupon Code" id="couponCode" >
-        <button class="btn btn-danger">Apply Coupon</button>
-        </div>
-        </div>
-    <div class="col-6">
-        <div class="modal-content rounded-4 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h1 class="fw-bold mb-0 fs-2">Cart Total</h1>
-        {{!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
-      </div>
-
-      <div class="modal-body p-5 pt-0">
-        <form class="">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-3 border-0 border-4" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-3 border-0" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-          </div>
-          <button class="w-100 mb-2 btn btn-lg ps-3 rounded-3 btn-danger" type="submit">Procees to checkout</button>
-          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
-          <hr class="my-4">
-          </form>
-      </div>
-        </div>
-    </div>
-</div>
