@@ -13,7 +13,7 @@ import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
 import TradeRouter from "./routes/trade.js"
 import CartRouter from "./routes/cartRoutes.js"
-
+import LikedRouter from "./routes/liked.js"
 
 
 
@@ -45,6 +45,7 @@ app.use(AuthRouter)
 app.use(ProductsRouter)
 app.use(TradeRouter)
 app.use(CartRouter)
+app.use(LikedRouter)
 
 
 
