@@ -36,7 +36,7 @@ router.get('/my-liked', async(req, res) => {
 router.post('/delete-product-from-liked/:id', async(req, res) => {
     const id = req.params.id
     await LikedItem.findByIdAndRemove(id)
-    res.redirect('/my-cart')
+    res.redirect('/my-liked')
 })
 
 
