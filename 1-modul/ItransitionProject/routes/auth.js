@@ -3,7 +3,6 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs"
 import { generateJWTToken } from "../services/token.js"
 import signMiddleware from "../middleware/sign.js"
-import passport from "passport";
 const router = Router()
 
 
