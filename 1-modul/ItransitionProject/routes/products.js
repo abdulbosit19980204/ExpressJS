@@ -239,8 +239,6 @@ router.post('/add-product', userMiddleware, async(req, res) => {
     res.redirect('/');
 });
 
-
-
 router.post('/edit-product/:id', async(req, res) => {
     const { title, description, price, discount, productType } = req.body;
     const id = req.params.id;
@@ -258,18 +256,25 @@ router.post('/edit-product/:id', async(req, res) => {
         productType,
     };
 
-    // Check if the request contains the file
-    if (req.files && req.files.image) {
-        const uploadedFile = req.files.image;
-        // Generate a unique filename for the uploaded file
-        const uniqueFileName = Date.now() + "_" + uploadedFile.name;
-        const uploadPath = path.join("./public/uploads", uniqueFileName);
+    // Check if the request contains multiple files
+    if (req.files && req.files.images) {
+        const uploadedFiles = req.files.images;
+        const uploadedImagePaths = [];
 
-        // Move the file to the desired location
-        await uploadedFile.mv(uploadPath);
+        // Handle multiple file uploads
+        for (const uploadedFile of Array.isArray(uploadedFiles) ? uploadedFiles : [uploadedFiles]) {
+            const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+            const uploadPath = path.join("./public/uploads", uniqueFileName);
 
-        // Update the product object with the new file path
-        editedProduct.image = "/uploads/" + uniqueFileName;
+            // Move the file to the desired location
+            await uploadedFile.mv(uploadPath);
+
+            // Push the image path to the array
+            uploadedImagePaths.push("/uploads/" + uniqueFileName);
+        }
+
+        // Update the product object with the new file paths in an array
+        editedProduct.images = uploadedImagePaths;
     }
 
     // Update the product in the database
@@ -277,6 +282,8 @@ router.post('/edit-product/:id', async(req, res) => {
 
     res.redirect('/');
 });
+
+
 
 
 router.post('/delete-product/:id', async(req, res) => {

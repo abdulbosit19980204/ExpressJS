@@ -5,8 +5,16 @@
             <pre class="lead pre-wrap fs-6">{{{product.description}}} </pre>
         </div>
         <div class="col-6">
-            <img class="img-fluid rounded" src={{product.image}} alt="">
-            <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-75 mt-2" data-bs-theme="light">
+            {{#if (isArray product.images)}}
+                  <div class="col-6">
+                    {{#each product.images}}
+                    <img class="img-fluid" src="{{this}}">
+                    {{/each}}
+                    </div>
+                {{else}}
+                <img class="img-thumbnail border-0" src="{{product.image}}">
+                {{/if}}
+                <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-75 mt-2" data-bs-theme="light">
                 <li><a class="dropdown-item rounded-2 bg-light" href="#">Seller: {{product.user.firstName}} {{product.user.lastName}}</a></li>
                 <li><a class="dropdown-item rounded-2" href="#">Created at:  {{formatDate product.createdAt}}</a></li>
                 <li><a class="dropdown-item rounded-2" href="#">Updated at: {{formatDate product.updatedAt}}</a></li>

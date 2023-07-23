@@ -23,7 +23,10 @@
  </form>   
   
     </th>
-      <td><img class="img-thumbnail" style="width: 100px;" src="{{product.image}}" alt=""></td>
+      <td>
+
+        <img class="img-thumbnail" style="width: 100px;" src="{{product.images.[0]}}" alt="">
+      </td>
       <td class="fw-semibold"><a href="/product/{{product._id}}" class="heading text-decoration-none text-black"> {{product.title}}</a></td>
       {{#if product.discount}}
       <td>

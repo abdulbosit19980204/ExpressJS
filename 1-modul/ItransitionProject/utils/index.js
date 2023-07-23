@@ -55,7 +55,10 @@ export default {
         const totalPrice = totalPrice + price
         console.log(totalPrice);
         return totalPrice
-    }
+    },
+    isArray(value) {
+        return Array.isArray(value);
+    },
 
 
 }
