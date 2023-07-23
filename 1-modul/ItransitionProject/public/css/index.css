@@ -52,6 +52,9 @@ input[type=number] {
     border: none;
     outline: none;
     background-color: transparent;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
 }
 
 .btn:hover {

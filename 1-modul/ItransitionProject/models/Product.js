@@ -7,12 +7,13 @@ const productSchema = new Schema({
     price: { type: Number, require: true },
     discount: { type: Number, require: false },
     productType: { type: String, require: false },
+    // liked: { type: Boolean, require: false },
     // sold: { type: Number, require: true },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
 }, {
     timestamps: true
 })
 
-productSchema.index({ title: 'text', description: 'text' }); // Create text index on 'name' and 'description' fields
+productSchema.index({ title: 'text', description: 'text', productType: 'text' }); // Create text index on 'name' and 'description' fields
 const Product = model('Product', productSchema)
 export default Product

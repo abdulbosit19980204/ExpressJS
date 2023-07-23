@@ -10,8 +10,21 @@
               <div class="text py-4 ">
                 <div class="d-flex justify-content-between">
                 <div class="row">
-                  <div class="mb-3 "><a href="#" class="text-decoration-none fw-bold text-dark bg-warning rounded p-1"> ${{price}} </a></div>
-                  <div class=""><a href="#" class="text-decoration-none fw-medium rounded bg-light p-1"><span class="bi bi-cart-dash"></span> 3</a></div>
+                  <div class="mb-3 "><a href="#" class="text-decoration-none fw-bold text-dark">
+                     {{#if discount}}
+                    <div class="">
+                      <span class="fs-5 fw-bold">${{countDiscount price discount}} </span>
+                      <span class="bg-warning text-mute text-decoration-line-through"> ${{price}} </span>
+                    </div>
+                    {{else}}
+                    <span class="fs-5 fw-bold ">${{price}} </span>
+                    {{/if}}
+                  </a></div>
+                  <div class=""><a href="#" class="text-decoration-none fw-medium rounded bg-light p-1"><span class="bi bi-cart-dash"></span> 3</a>
+                    {{#if discount}}
+                               <span class="bg-danger-subtle fw-bolder rounded p-1">{{discount}}% discount</span>
+                         {{/if}}
+                  </div>
                 </div>
                 <div><a href="#" class="text-decoration-none m-0 p-0 text-dark fw-medium bg-light rounded p-1">{{formatDate createdAt}}</a></div>
                   </div>

@@ -25,9 +25,19 @@
         "jsonwebtoken": "^9.0.1",
         "moment": "^2.29.4",
         "mongoose": "^7.3.2",
+<<<<<<< HEAD
         "papaparse": "^5.4.1"
+=======
+        "passport": "^0.6.0",
+        "passport-google-oauth": "^2.0.0",
+        "passport-google-oauth2": "^0.2.0",
+        "tinymce": "^6.6.0"
+>>>>>>> 4ab03508d052b1106ad21c9f193c2b761bf53aad
     },
     "devDependencies": {
         "nodemon": "^2.0.22"
+    },
+    "engines": {
+        "node": ">=14 <15"
     }
 }

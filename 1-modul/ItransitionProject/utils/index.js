@@ -48,7 +48,14 @@ export default {
             return true;
         }
     },
-
+    plus(index, number) {
+        return index + number
+    },
+    countTotalPrice(price) {
+        const totalPrice = totalPrice + price
+        console.log(totalPrice);
+        return totalPrice
+    }
 
 
 }

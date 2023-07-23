@@ -1,0 +1,58 @@
+{{#if likedProducts}}
+<table class="table table-hover mt-5">
+    
+<thead class="shadow-sm">
+    <tr class="">
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Seller</th>
+    </tr>
+  </thead>
+  <tbody>
+ {{#each likedProducts}} 
+    <tr>
+    <th scope="row">{{plus @index 1}}
+      <div >
+        <a href=""><i class="text-danger bi bi-heart-fill"></i></a>
+      </div>
+ <form action="/delete-product-from-liked/{{_id}}" method="post">
+  <button type="submit" class="deleteBtn"><i class="bi bi-x text-danger"></i></button>
+ </form>   
+  
+    </th>
+      <td><img class="img-thumbnail" style="width: 100px;" src="{{product.image}}" alt=""></td>
+      <td class="fw-semibold"><a href="/product/{{product._id}}" class="heading text-decoration-none text-black"> {{product.title}}</a></td>
+      {{#if product.discount}}
+      <td>
+         <p class="bg-warning text-decoration-line-through">{{product.price}}</p>   
+       <p class="fw-semibold"> {{countDiscount product.price product.discount}}$</p> 
+      </td>
+      {{else}}
+      <td class="fw-semibold">{{product.price}}$</td>
+      {{/if}}
+     <td>
+        {{#if user.userImage}}
+        <img src="{{user.userImage}}" alt="userimage" class="rounded-circle img-thumbnail" style="width: 50px; height: 50px; border: 3px solid rgb(255, 0, 0);">
+        {{user.firstName}}  {{user.lastName}}
+        {{else}}
+        <div class="d-flex gap-2 align-items-center">
+                <div class="avatar bg-primary">
+                    <p>{{ getFullNameFirstCharacter user.firstName user.lastName}}</p>
+                </div>
+                <p  class="m-0 p-0">{{user.firstName}} {{user.lastName}}</p>
+                </div>
+        {{/if}}
+      </td>
+    </tr>
+{{/each}}
+  </tbody>
+  
+</table>
+{{/if}}
+<div class="d-flex justify-content-between mt-3 mb-5">
+    <a class="btn btn-outline-dark" href="/all">Return To Shop</a>
+    <a class="btn btn-outline-dark" href="my-cart">Update Cart</a>
+</div>
+

@@ -11,10 +11,16 @@ import hbsHelper from "./utils/index.js"
 // Routers
 import AuthRouter from "./routes/auth.js"
 import ProductsRouter from "./routes/products.js"
+import TradeRouter from "./routes/trade.js"
+import CartRouter from "./routes/cartRoutes.js"
+import LikedRouter from "./routes/liked.js"
+
+
+
 
 const app = express()
 
-//handle barsni shu yerda sozlab olamiz
+//start of the handlebars setting
 const hbs = create({
     defaultLayout: 'main',
     extname: 'hbs',
@@ -24,7 +30,7 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', './views');
 
-//shu yerda handle barsni sozlamlari tugadi endi uni foydalanish mumkin
+//This is the end of the handlebars setting as a hbs
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }))
@@ -37,6 +43,9 @@ app.use(userMiddleware)
 app.use(flash())
 app.use(AuthRouter)
 app.use(ProductsRouter)
+app.use(TradeRouter)
+app.use(CartRouter)
+app.use(LikedRouter)
 
 
 
