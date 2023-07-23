@@ -17,11 +17,7 @@
       <textarea name="description" style="height: 150px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required>{{product.description}}</textarea>
       <label for="floatingTextarea">Description</label>
     </div>
-    {{!-- <div class="form-floating mb-2">
-      <input value="{{product.image}}" name="image" type="text" class="form-control" id="floatingPassword" placeholder="Image" required>
-      <label for="floatingPassword">Image</label>
-    </div> --}}
-     <div class="form-floating mb-2">
+         <div class="form-floating mb-2">
       <input name="image" type="file"  accept="image/*" class="form-control" id="floatingPassword" placeholder="Image">
       <label for="floatingPassword">Image</label>
     </div>
@@ -47,15 +43,18 @@
       <option value="Camera">Camera</option>
       <option value="HeadPhones">HeadPhones</option>
     </select>
-
-      
+   
   
     <button class="btn btn-primary py-2" type="submit">Edit product</button>
     <a href="/" class="text-decoration-none btn btn-warning">Cancel</a>
      </form>
         </div>
-        <div class="col-6">
-            <img class="img-fluid" src={{product.image}}>
+        <div class="col-5">
+          {{#each product.images}}
+          <div class="col-6">
+            <img class="img-fluid" src="{{this}}">
+          </div>
+          {{/each}}
         </div>
     </div>
 </div>

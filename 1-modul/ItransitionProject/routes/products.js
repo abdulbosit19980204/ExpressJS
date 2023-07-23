@@ -151,34 +151,81 @@ router.get('/download-csv', async(req, res) => {
 
 //Post methods
 
+// router.post('/add-product', userMiddleware, async(req, res) => {
+//     const { title, description, image, price, discount, productType } = req.body;
+
+//     if (!title || !description || !price) {
+//         req.flash('errorAddProduct', 'All fields are required');
+//         return res.redirect('/add');
+//     }
+
+//     // Check if the request contains the file
+//     if (!req.files || !req.files.image) {
+//         req.flash('errorAddProduct', 'Image is required');
+//         return res.redirect('/add');
+//     }
+
+//     const uploadedFile = req.files.image;
+
+//     // Generate a unique filename for the uploaded file
+//     const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+//     const uploadPath = path.join("./public/uploads", uniqueFileName);
+
+//     // Move the file to the desired location
+//     await uploadedFile.mv(uploadPath);
+
+//     // Create the new product object with the file path
+//     const newProduct = new Product({
+//         title,
+//         description,
+//         image: "/uploads/" + uniqueFileName,
+//         price,
+//         discount,
+//         productType,
+//         user: req.userId // Assuming you have a user ID stored in the req object by userMiddleware
+//     });
+
+//     // Save the product to the database
+//     await newProduct.save();
+
+//     // Redirect after successful product creation
+//     res.redirect('/');
+
+// });
+
 router.post('/add-product', userMiddleware, async(req, res) => {
-    const { title, description, image, price, discount, productType } = req.body;
+    const { title, description, price, discount, productType } = req.body;
 
     if (!title || !description || !price) {
         req.flash('errorAddProduct', 'All fields are required');
         return res.redirect('/add');
     }
-
-    // Check if the request contains the file
-    if (!req.files || !req.files.image) {
+    // Check if the request contains multiple files
+    if (!req.files || !req.files.images) {
         req.flash('errorAddProduct', 'Image is required');
         return res.redirect('/add');
     }
 
-    const uploadedFile = req.files.image;
+    const uploadedFiles = req.files.images;
+    const uploadedImagePaths = [];
 
-    // Generate a unique filename for the uploaded file
-    const uniqueFileName = Date.now() + "_" + uploadedFile.name;
-    const uploadPath = path.join("./public/uploads", uniqueFileName);
+    // Handle multiple file uploads
+    for (const uploadedFile of Array.isArray(uploadedFiles) ? uploadedFiles : [uploadedFiles]) {
+        const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+        const uploadPath = path.join("./public/uploads", uniqueFileName);
 
-    // Move the file to the desired location
-    await uploadedFile.mv(uploadPath);
+        // Move the file to the desired location
+        await uploadedFile.mv(uploadPath);
 
-    // Create the new product object with the file path
+        // Push the image path to the array
+        uploadedImagePaths.push("/uploads/" + uniqueFileName);
+    }
+
+    // Create the new product object with the file paths
     const newProduct = new Product({
         title,
         description,
-        image: "/uploads/" + uniqueFileName,
+        images: uploadedImagePaths, // Use 'images' instead of 'image'
         price,
         discount,
         productType,
@@ -190,8 +237,8 @@ router.post('/add-product', userMiddleware, async(req, res) => {
 
     // Redirect after successful product creation
     res.redirect('/');
-
 });
+
 
 
 router.post('/edit-product/:id', async(req, res) => {
