@@ -15,7 +15,12 @@ import TradeRouter from "./routes/trade.js"
 import CartRouter from "./routes/cartRoutes.js"
 import LikedRouter from "./routes/liked.js"
 
-
+// file upload
+import bodyParser from "body-parser";
+import fileUpload from "express-fileupload";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+import fs from "fs"
 
 
 const app = express()
@@ -41,6 +46,19 @@ app.use(session({ secret: "tatu", resave: false, saveUninitialized: false }))
 app.use(authTokenMiddleware)
 app.use(userMiddleware)
 app.use(flash())
+
+// file uploads middlewares
+// Parse incoming request bodies (url-encoded and JSON)
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// Enable file uploads
+app.use(fileUpload());
+
+
+
+
+
+
 app.use(AuthRouter)
 app.use(ProductsRouter)
 app.use(TradeRouter)

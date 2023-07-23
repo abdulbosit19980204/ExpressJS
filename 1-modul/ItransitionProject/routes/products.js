@@ -4,6 +4,14 @@ import LikedItem from "../models/Liked.js";
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 import { Parser } from "json2csv"
+import fs from "fs"
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
+
+const __filename = fileURLToPath(
+    import.meta.url)
+const __dirname = dirname(__filename)
+
 const router = Router();
 
 router.get('/', async(req, res) => {
@@ -143,16 +151,89 @@ router.get('/download-csv', async(req, res) => {
 
 //Post methods
 
+// router.post('/add-product', userMiddleware, async(req, res) => {
+//     const { title, description, image, price, discount, productType } = req.body
+//     if (!title || !description || !image || !price) {
+//         req.flash('errorAddProduct', 'All fields are required')
+//         res.redirect('/add')
+//         return
+//     }
+
+
+//     // Check if the request contains the file
+//     if (!req.files || !req.files.image) {
+//         // Handle file upload error
+//         return res.status(400).json({ error: "No file uploaded" });
+//     }
+
+
+//     const uploadedFile = req.files.image;
+
+//     // Generate a unique filename for the uploaded file
+//     const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+//     const uploadPath = path.join(__dirname, "uploads", uniqueFileName);
+
+//     // Move the file to the desired location
+//     await uploadedFile.mv(uploadPath);
+
+//     // Example usage
+//     const newUser = new User({
+//         // ... other fields
+//         image: uploadPath, // Use the file path where the file was saved
+//     });
+
+//     // Save the user
+//     await newUser.save();
+
+//     res.json({ message: "File uploaded successfully" });
+
+//     const products = await Product.create({...req.body, user: req.userId })
+//     res.redirect('/')
+// })
+
 router.post('/add-product', userMiddleware, async(req, res) => {
-    const { title, description, image, price, discount, productType } = req.body
-    if (!title || !description || !image || !price) {
-        req.flash('errorAddProduct', 'All fields are required')
-        res.redirect('/add')
-        return
+    const { title, description, image, price, discount, productType } = req.body;
+
+    if (!title || !description || !price) {
+        req.flash('errorAddProduct', 'All fields are required');
+        return res.redirect('/add');
     }
-    const products = await Product.create({...req.body, user: req.userId })
-    res.redirect('/')
-})
+
+    // Check if the request contains the file
+    if (!req.files || !req.files.image) {
+        req.flash('errorAddProduct', 'Image is required');
+        return res.redirect('/add');
+    }
+
+    const uploadedFile = req.files.image;
+
+    // Generate a unique filename for the uploaded file
+    const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+    const uploadPath = path.join("./public/uploads", uniqueFileName);
+
+    // Move the file to the desired location
+    await uploadedFile.mv(uploadPath);
+
+    // Create the new product object with the file path
+    const newProduct = new Product({
+        title,
+        description,
+        image: "/uploads/" + uniqueFileName,
+        price,
+        discount,
+        productType,
+        user: req.userId // Assuming you have a user ID stored in the req object by userMiddleware
+    });
+
+    // Save the product to the database
+    await newProduct.save();
+
+    // Redirect after successful product creation
+    res.redirect('/');
+
+    // Alternatively, if you want to return a JSON response
+    // res.json({ message: "Product added successfully", product: newProduct });
+});
 
 router.post('/edit-product/:id', async(req, res) => {
     const { title, description, image, price, discount, productType } = req.body
