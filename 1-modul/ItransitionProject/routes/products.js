@@ -2,7 +2,10 @@ import { Router } from "express";
 import Product from "../models/Product.js"
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
+// import { csvparse, Parser } from 'papaparse';
+import { Parser } from "json2csv"
 const router = Router();
+
 router.get('/', async(req, res) => {
     try {
         const products = await Product.find().limit(5).lean()
@@ -113,6 +116,28 @@ router.get('/search', async(req, res) => {
         res.redirect('/')
     }
 })
+
+router.get('/download-csv', async(req, res) => {
+    try {
+        const user = req.userId ? req.userId.toString() : null;
+        const myProducts = await Product.find({ user }).populate('user').lean();
+
+        // Convert the data to CSV format using papaparse
+        const jsontocsvParse = new Parser();
+        const csv = await jsontocsvParse.parse(myProducts);
+
+        // Set the appropriate headers for the response
+        res.setHeader('Content-Type', 'text/csv');
+        res.setHeader('Content-Disposition', 'attachment; filename="my-products.csv"');
+
+        // Send the CSV data to the client
+        res.send(csv);
+
+    } catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
+});
 
 
 //Post methods
