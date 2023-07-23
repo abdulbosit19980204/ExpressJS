@@ -151,46 +151,6 @@ router.get('/download-csv', async(req, res) => {
 
 //Post methods
 
-// router.post('/add-product', userMiddleware, async(req, res) => {
-//     const { title, description, image, price, discount, productType } = req.body
-//     if (!title || !description || !image || !price) {
-//         req.flash('errorAddProduct', 'All fields are required')
-//         res.redirect('/add')
-//         return
-//     }
-
-
-//     // Check if the request contains the file
-//     if (!req.files || !req.files.image) {
-//         // Handle file upload error
-//         return res.status(400).json({ error: "No file uploaded" });
-//     }
-
-
-//     const uploadedFile = req.files.image;
-
-//     // Generate a unique filename for the uploaded file
-//     const uniqueFileName = Date.now() + "_" + uploadedFile.name;
-//     const uploadPath = path.join(__dirname, "uploads", uniqueFileName);
-
-//     // Move the file to the desired location
-//     await uploadedFile.mv(uploadPath);
-
-//     // Example usage
-//     const newUser = new User({
-//         // ... other fields
-//         image: uploadPath, // Use the file path where the file was saved
-//     });
-
-//     // Save the user
-//     await newUser.save();
-
-//     res.json({ message: "File uploaded successfully" });
-
-//     const products = await Product.create({...req.body, user: req.userId })
-//     res.redirect('/')
-// })
-
 router.post('/add-product', userMiddleware, async(req, res) => {
     const { title, description, image, price, discount, productType } = req.body;
 
@@ -231,22 +191,46 @@ router.post('/add-product', userMiddleware, async(req, res) => {
     // Redirect after successful product creation
     res.redirect('/');
 
-    // Alternatively, if you want to return a JSON response
-    // res.json({ message: "Product added successfully", product: newProduct });
 });
 
+
 router.post('/edit-product/:id', async(req, res) => {
-    const { title, description, image, price, discount, productType } = req.body
-    const id = req.params.id
-    if (!title || !description || !image || !price) {
-        req.flash('errorEditProduct', 'All fields are required')
-        res.redirect(`/edit-product/${id}`)
-        return
+    const { title, description, price, discount, productType } = req.body;
+    const id = req.params.id;
+
+    if (!title || !description || !price) {
+        req.flash('errorEditProduct', 'All fields are required');
+        return res.redirect(`/edit-product/${id}`);
     }
 
-    await Product.findByIdAndUpdate(id, req.body)
-    res.redirect('/')
-})
+    let editedProduct = {
+        title,
+        description,
+        price,
+        discount,
+        productType,
+    };
+
+    // Check if the request contains the file
+    if (req.files && req.files.image) {
+        const uploadedFile = req.files.image;
+        // Generate a unique filename for the uploaded file
+        const uniqueFileName = Date.now() + "_" + uploadedFile.name;
+        const uploadPath = path.join("./public/uploads", uniqueFileName);
+
+        // Move the file to the desired location
+        await uploadedFile.mv(uploadPath);
+
+        // Update the product object with the new file path
+        editedProduct.image = "/uploads/" + uniqueFileName;
+    }
+
+    // Update the product in the database
+    await Product.findByIdAndUpdate(id, editedProduct);
+
+    res.redirect('/');
+});
+
 
 router.post('/delete-product/:id', async(req, res) => {
     const id = req.params.id
