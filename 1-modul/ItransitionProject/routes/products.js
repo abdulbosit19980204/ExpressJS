@@ -2,7 +2,6 @@ import { Router } from "express";
 import Product from "../models/Product.js"
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
-// import { csvparse, Parser } from 'papaparse';
 import { Parser } from "json2csv"
 const router = Router();
 
