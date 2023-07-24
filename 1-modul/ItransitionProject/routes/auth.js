@@ -3,8 +3,17 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs"
 import { generateJWTToken } from "../services/token.js"
 import signMiddleware from "../middleware/sign.js"
-const router = Router()
+import Message from "../models/Message.js";
+import nodemailer from "nodemailer"
 
+const router = Router()
+const transporter = nodemailer.createTransport({
+    service: 'Gmail', // e.g., 'Gmail', 'Outlook', etc.
+    auth: {
+        user: 'example@gmail.com',
+        pass: process.env.AUTH_PASS,
+    },
+});
 
 
 router.get('/register', signMiddleware, (req, res) => {
@@ -100,5 +109,30 @@ router.post('/login', async(req, res) => {
     res.redirect('/')
 })
 
+router.post('/contact', async(req, res) => {
+    const { senderName, senderEmail, senderPhone, message } = req.body
+    const messageData = await Message.create(req.body)
+    console.log(messageData);
+
+    // Send the email response to the user
+    const mailOptions = {
+        from: 'uzdev7@gmail.com ', // Sender email address
+        to: senderEmail, // Receiver email address (use `senderEmail` here as we're sending a response to the user)
+        subject: 'Thank you for contacting us', // Email subject
+        text: `Dear ${senderName},\n\nThank you for contacting us. We have received your message and will get back to you soon.\n\nBest regards,\nuzdev7 Team`,
+    };
+
+    // Send the email using the transporter
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+        } else {
+            console.log('Email sent:', info.response);
+        }
+    });
+
+    res.redirect('/')
+
+})
 
 export default router
