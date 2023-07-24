@@ -1,6 +1,14 @@
-<div class="m-auto mt-5">
+<div class="m-auto mt-5 d-flex">
+  <div class="col-6">
+          {{#if errorEditProduct}}
+          <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <i class="bi bi-alert"></i>
+                <div>
+                  {{errorEditProduct}}
+                </div>
+          </div>
+          {{/if}}
     <div class="row">
-        <div class="col-6">
       <form action="/edit-product/{{product._id}}" method="post" class="" enctype="multipart/form-data">
      <h1 class="h3 mb-3 fw-normal text-center">Edit product</h1>
          {{#if errorEditProduct}}
@@ -50,12 +58,12 @@
     <a href="/" class="text-decoration-none btn btn-warning">Cancel</a>
      </form>
         </div>
-        <div class="col-5">
+  </div>
+  <div class="col-5 mx-2">
           {{#each product.images}}
-          <div class="col-6">
+          <div class="col-12">
             <img class="img-fluid" src="{{this}}">
           </div>
           {{/each}}
-        </div>
-    </div>
+  </div>
 </div>

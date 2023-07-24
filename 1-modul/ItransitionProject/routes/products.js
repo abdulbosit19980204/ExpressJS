@@ -244,7 +244,7 @@ router.post('/edit-product/:id', async(req, res) => {
     const id = req.params.id;
 
     if (!title || !description || !price) {
-        req.flash('errorEditProduct', 'All fields are required');
+        req.flash('errorEditProduct', "All fields are required");
         return res.redirect(`/edit-product/${id}`);
     }
 
