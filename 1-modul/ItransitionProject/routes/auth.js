@@ -28,6 +28,7 @@ router.get('/login', signMiddleware, (req, res) => {
 router.get('/logout', (req, res) => {
     res.clearCookie("token")
     res.redirect('/')
+
 })
 
 // Post methods
