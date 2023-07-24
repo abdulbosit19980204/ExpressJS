@@ -11,8 +11,6 @@ router.get('/add-to-cart/:id', async(req, res) => {
     res.redirect('/my-cart')
 });
 
-
-
 router.get('/my-cart', async(req, res) => {
     try {
         const user = req.userId ? req.userId.toString() : null
