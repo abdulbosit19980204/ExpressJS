@@ -58,9 +58,43 @@ router.post('/setting', async(req, res) => {
 })
 
 router.post('/delete-account/:userId', async(req, res) => {
-    await User.findByIdAndRemove(req.userId)
-    res.clearCookie("token")
-    res.redirect('/')
+
+    const { password } = req.body
+    const plainTextData = password
+    const userData = await User.findById(req.userId).lean()
+    const hashedData = userData.password
+    bcrypt.compare(plainTextData, hashedData, async(err, isMatch) => {
+        if (err) {
+            console.error('Error comparing data:', err);
+            req.flash('settingError', "Error ocure during comparing password")
+            res.redirect('/setting')
+            return;
+        }
+        if (isMatch) {
+            console.log('Data matches!');
+            req.flash('settingError', "Data saved successfully")
+                // The original data matches the hashed data
+            await User.findByIdAndRemove(req.userId)
+            res.clearCookie("token")
+            res.redirect('/')
+        } else {
+            console.log('Data does not match!');
+            req.flash('settingError', "Password is wrong!")
+            res.redirect('/setting')
+
+        }
+
+    })
+
+
+
+
+
+
+    // await User.findByIdAndRemove(req.userId)
+    // res.clearCookie("token")
+    // res.redirect('/')
+    // res.redirect('/setting')
 
 })
 

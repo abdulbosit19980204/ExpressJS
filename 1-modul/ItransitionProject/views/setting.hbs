@@ -156,21 +156,25 @@
                                 Best regards,
                                 The Exclusive Team
                                 <hr>
-                                <div class=" mb-3">
-                                    <label for="email" class="form-label">Confirm Password <span class="text-warning fs-5">*</span></label>
-                                    <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a your secret key
-                                    </div>
-                                    </div>
+                              
                                 </div>
+                                    <form class="was-validated" action="/delete-account/{{userData._id}}" method="post">
                                 <div class="modal-footer">
+                                    <div class="col-12 d-block mb-3">
+                                            <label for="email" class="form-label">Confirm Password <span class="text-warning fs-5">*</span></label>
+                                            <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a your secret key
+                                            </div>
+                                    </div>
+                                    <div>
+
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <form class="was-validate" action="/delete-account/{{userData._id}}" method="post">
                                     <button type="submit" class="btn btn-danger">Delete Account</button>
+                                    </div>
                                     {{!-- <button class=" btn btn-outline-danger" type="submit"> Delete account</button> --}}
-                                    </form>
                                 </div>
+                                    </form>
                                     </div>
                                 </div>
                                 </div>
