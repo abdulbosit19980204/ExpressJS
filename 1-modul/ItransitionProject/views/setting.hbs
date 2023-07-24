@@ -1,0 +1,149 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+      <li class="breadcrumb-item">
+        <a class="link-body-emphasis" href="/">
+         <i class="bi bi-house-fill"></i>
+          <span class="visually-hidden">Home</span>
+        </a>
+      </li>
+      <li class="breadcrumb-item">
+        <a class="link-body-emphasis fw-semibold text-decoration-none" href="/products">Profile</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <a href="/setting">Setting</a>
+      </li>
+    </ol>
+</nav>
+ <div class="col-12 shadow rounded p-3">
+     <div class="row ">
+        <div class="col-8">
+            <div class="p-5 pt-2 pb-4 border-bottom-0">
+        <h1 class="fw-bold fs-2">Setting your account</h1>
+        <h1 class="fw-light fs-6">Enter your details below</h1>
+
+            </div>
+            
+            <div class="modal-body p-5 pt-0">
+                {{!-- {{#if registerError}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{registerError}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {{/if}} --}}
+                <form class="" novalidate="" action="/setting" method="post" enctype="multipart/form-data"> 
+                <div class="row g-4">
+                    <div class="col-sm-6">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input  name="firstName" value="{{userData.firstName}}" type="text" class="form-control border-0 border-bottom" id="firstName" placeholder="First name" value="" required>
+                    <div class="invalid-feedback">
+                        Valid first name is required.
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input name="lastName" value="{{userData.lastName}}" type="text" class="form-control border-0 border-bottom" id="lastName" placeholder="Last name" value="" required>
+                    <div class="invalid-feedback">
+                        Valid last name is required.
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <label for="email" class="form-label">Email <span class="text-warning fs-5">*</span></label>
+                    <input  name="email" type="email" value="{{userData.email}}" class="form-control border-0 border-bottom" id="email" placeholder="you@example.com" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid email address for shipping updates.
+                    </div>
+                    </div>
+                            
+                    <div class="col-sm-6">
+                <label for="userImage" class="form-label">User image</label>
+                <input name="userImage" value="{{userData.userImage}}"  type="text" class="form-control border-0 border-bottom" id="lastName" placeholder="User image link" value="">
+                <div class="invalid-feedback">
+                    User image is required.
+                </div>
+                    </div>
+                    <div class="col-md-3">
+                    {{!-- <label for="address" class="form-label">Address</label> --}}
+                    <input name="address" value="{{userData.address}}"  type="text" class="form-control border-0 border-bottom" id="address" placeholder="Address" required>
+                    <div class="invalid-feedback">
+                        Please enter your address.
+                    </div>
+                    
+                    </div>
+                
+
+                <div class="col-md-3">
+                    {{!-- <label for="country" class="form-label">Country</label> --}}
+                    <select name="country" class="form-select" id="country" required>
+                        <option value="{{userData.country}}" selected>{{userData.country}}</option>
+                        <option value="Uzbekistan">Uzbeksitan</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid country.
+                    </div>
+                    </div>
+
+                    <div class="col-md-3">
+                    {{!-- <label for="state" class="form-label">State</label> --}}
+                    <select name="state" class="form-select" id="state" required>
+                        <option value="{{userData.state}}">{{userData.state}}</option>
+                        <option value="Tashkent">Tashkent</option>
+                        <option value="Andijan">Andijan</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please provide a valid state.
+                    </div>
+                    </div>
+
+                    <div class="col-md-3">
+                    {{!-- <label for="zip" class="form-label">Zip</label> --}}
+                    <input name="zipCode" value="{{userData.zipCode}}"  type="text" class="form-control" id="zip" placeholder="Zip code" required>
+                    <div class="invalid-feedback">
+                        Zip code required.
+                    </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+                    <div class="col-sm-6 mb-3">
+                    <label for="email" class="form-label">Confirm Password <span class="text-warning fs-5">*</span></label>
+                    <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
+                    <div class="invalid-feedback">
+                        Please enter a your secret key
+                    </div>
+                    </div>
+                <button class="py-2 mb-2 btn btn-danger rounded-3 col-8" type="submit">Edit Account</button>
+                
+                {{!-- <h2 class="fs-5 fw-bold mb-3">Or Sign up with a third-party </h2> --}}
+                <button class="py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                    <i class="bi bi-twitter"></i>
+                    
+                </button>
+                <button class="py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                    <i class="bi bi-facebook"></i>
+                    
+                </button>
+                <button class="py-2 mb-2 btn btn-outline-danger rounded-3" type="submit">
+                    <i class="bi bi-google"></i>
+                    
+                </button>
+                <hr class="my-4">
+                
+                    <div class="col-8 ">
+                    <span class="text-black-50">
+                    I don't want to change 
+                    </span>
+                <a href="/" class=" col-3 text-dark">  Cancel</a>
+                    </div>
+                    
+                
+                </form>
+            </div>
+        </div>
+        <div class="col-3">
+            <div>
+                <img class="img-fluid rounded" src="{{userData.userImage}}" alt="">
+            </div>
+        </div>
+     </div>
+
+  </div>

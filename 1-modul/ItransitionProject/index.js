@@ -14,6 +14,7 @@ import ProductsRouter from "./routes/products.js"
 import TradeRouter from "./routes/trade.js"
 import CartRouter from "./routes/cartRoutes.js"
 import LikedRouter from "./routes/liked.js"
+import settingRouter from "./routes/setting.js"
 
 // file upload
 import bodyParser from "body-parser";
@@ -64,7 +65,7 @@ app.use(ProductsRouter)
 app.use(TradeRouter)
 app.use(CartRouter)
 app.use(LikedRouter)
-
+app.use(settingRouter)
 
 
 const startApp = () => {
