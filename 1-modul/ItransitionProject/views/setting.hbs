@@ -15,7 +15,7 @@
     </ol>
 </nav>
  <div class="col-12 shadow rounded p-3">
-     <div class="row ">
+     <div class="row d-flex justify-content-between">
         <div class="col-8">
             <div class="p-5 pt-2 pb-4 border-bottom-0">
         <h1 class="fw-bold fs-2">Setting your account</h1>
@@ -139,10 +139,15 @@
                 </form>
             </div>
         </div>
-        <div class="col-3">
-            <div>
-                <img class="img-fluid rounded" src="{{userData.userImage}}" alt="">
-            </div>
+       
+        <div class="col-lg-3 p-5 me-3 text-center rounded shadow  bg-light justify-conten-center pt-5">
+            <img class="bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="{{userData.userImage}}" alt="">
+            <h5 class="fw-normal mb-4"><span class="bg-warning p-1 fw-semibold rounded">{{userData.firstName}}</span> {{userData.lastName}}</h5>
+            <p><span class="fw-bold">Address:</span> {{userData.address}}</p>
+            <p><span class="fw-bold">State:</span> {{userData.state}}</p>
+            <p><span class="fw-bold">Country:</span> {{userData.country}}</p>
+            <p><a class="btn btn-danger" href="/products">My products »</a></p>
+        </div>
         </div>
      </div>
 
