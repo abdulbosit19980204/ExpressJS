@@ -132,12 +132,54 @@
                 <span class="bg-black text-danger rounded text-center p-2 me-2 fw-bold"> Danger: 
                     <span class="text-light fw-normal"> I want to delete my account:</span>
                 </span>
-                <form action="/delete-account/{{userData._id}}" method="post">
-                    <button class=" btn btn-outline-danger" type="submit"> Delete account</button>
-                </form>
-            </div>
-            </div>
-        </div>
+                
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal</button>
+        <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Account</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Delete Account Confirmation
+                                Dear <span class="bg-warning fw-bold">{{userData.firstName}} {{userData.lastName}}</span>,
+                                We are sorry to see you go. Before you proceed with deleting your account, please take a moment to read the following:
+                                This action cannot be undone, and you will lose access to your account, settings, preferences, and any content or data associated with your account.
+                                Deleted data cannot be recovered. If you wish to continue, please be sure that you have backed up any important information.
+                                If you are facing any issues or have concerns, we encourage you to contact our support team at <span class="text-danger"><i class="bi bi-envelope-at"></i><a href="malito:uzdev7@gmail.com" class="text-decoration-none text-danger"> uzdev7@gmail.com </a></span> or <span class="text-danger">+9998900066639</span>. We'd be happy to assist you.
+                                If you still wish to delete your account, please click the button below:
+                                <span class="btn btn-outline-danger">Delete Account Button</span>
+                                By clicking the <span class="btn btn-danger"> "Delete Account"</span> button, you acknowledge that you have read and understood the consequences of this action.
+                                Thank you for being a part of our community. We value your feedback and insights, and if you ever decide to return, we'll be here to welcome you back.
+                                Best regards,
+                                The Exclusive Team
+                                <hr>
+                                <div class=" mb-3">
+                                    <label for="email" class="form-label">Confirm Password <span class="text-warning fs-5">*</span></label>
+                                    <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a your secret key
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <form class="was-validate" action="/delete-account/{{userData._id}}" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                                    {{!-- <button class=" btn btn-outline-danger" type="submit"> Delete account</button> --}}
+                                    </form>
+                                </div>
+                                    </div>
+                                </div>
+                                </div>
+
+
+
+                            </div>
+                            </div>
+                        </div>
        
         <div class="col-lg-3 p-5 me-4 text-center rounded shadow  bg-light-subtle justify-conten-center pt-5">
             <img class="bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="{{userData.userImage}}" alt="">
@@ -153,59 +195,4 @@
   </div>
 
 
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Account</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Delete Account Confirmation
-
-Dear <span class="bg-warning fw-bold">{{userData.firstName}} {{userData.lastName}}</span>,
-
-We are sorry to see you go. Before you proceed with deleting your account, please take a moment to read the following:
-
-[Your Company/Application Name] will permanently delete your account and all associated data. This action cannot be undone, and you will lose access to your account, settings, preferences, and any content or data associated with your account.
-
-Deleted data cannot be recovered. If you wish to continue, please be sure that you have backed up any important information.
-
-If you are facing any issues or have concerns, we encourage you to contact our support team at <span class="text-danger"><i class="bi bi-envelope-at"></i><a href="malito:uzdev7@gmail.com" class="text-decoration-none text-danger"> uzdev7@gmail.com </a></span> or <span class="text-danger">+9998900066639</span>. We'd be happy to assist you.
-
-If you still wish to delete your account, please click the button below:
-
-<span class="btn btn-outline-danger">Delete Account Button</span>
-
-By clicking the <span class="btn btn-danger"> "Delete Account"</span> button, you acknowledge that you have read and understood the consequences of this action.
-
-Thank you for being a part of our community. We value your feedback and insights, and if you ever decide to return, we'll be here to welcome you back.
-
-Best regards,
-The GoPay Team
-
-<hr>
-<div class=" mb-3">
-                    <label for="email" class="form-label">Confirm Password <span class="text-warning fs-5">*</span></label>
-                    <input  name="password" type="password" class="form-control border-0 border-bottom" id="email" placeholder="Password" required>
-                    <div class="invalid-feedback">
-                        Please enter a your secret key
-                    </div>
-                    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="/delete-account/{{userData._id}}" method="post">
-        <button type="submit" class="btn btn-danger">Delete Account</button>
-        {{!-- <button class=" btn btn-outline-danger" type="submit"> Delete account</button> --}}
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
