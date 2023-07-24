@@ -23,11 +23,13 @@ router.post('/setting', async(req, res) => {
     bcrypt.compare(plainTextData, hashedData, async(err, isMatch) => {
             if (err) {
                 console.error('Error comparing data:', err);
+                req.flash('settingError', "Error comparing data:")
                 return;
             }
             if (isMatch) {
                 console.log('Data matches!');
-                // The original data matches the hashed data
+                req.flash('settingError', "bg-light-subtle")
+                    // The original data matches the hashed data
                 const hashedPassword = await bcrypt.hash(password, 10)
                 let editedProduct = {
                     firstName,
@@ -44,7 +46,8 @@ router.post('/setting', async(req, res) => {
 
             } else {
                 console.log('Data does not match!');
-                // The original data does not match the hashed data
+                req.flash('settingError', "Data does not match!")
+                    // The original data does not match the hashed data
             }
 
         })

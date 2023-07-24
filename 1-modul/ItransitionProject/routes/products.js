@@ -1,10 +1,8 @@
 import { Router } from "express";
 import Product from "../models/Product.js"
-import LikedItem from "../models/Liked.js";
 import authMiddleware from "../middleware/auth.js"
 import userMiddleware from "../middleware/user.js"
 import { Parser } from "json2csv"
-import fs from "fs"
 import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 

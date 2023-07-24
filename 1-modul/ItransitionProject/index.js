@@ -19,9 +19,6 @@ import settingRouter from "./routes/setting.js"
 // file upload
 import bodyParser from "body-parser";
 import fileUpload from "express-fileupload";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
-import fs from "fs"
 
 
 const app = express()

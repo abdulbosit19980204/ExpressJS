@@ -24,12 +24,12 @@
             </div>
             
             <div class="modal-body p-5 pt-0">
-                {{!-- {{#if registerError}}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> {{registerError}}
+                {{#if settingError}}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{settingError}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-                {{/if}} --}}
+                {{/if}}
                 <form class="" novalidate="" action="/setting" method="post" enctype="multipart/form-data"> 
                 <div class="row g-4">
                     <div class="col-sm-6">
@@ -140,7 +140,7 @@
             </div>
         </div>
        
-        <div class="col-lg-3 p-5 me-3 text-center rounded shadow  bg-light justify-conten-center pt-5">
+        <div class="col-lg-3 p-5 me-4 text-center rounded shadow  bg-light-subtle justify-conten-center pt-5">
             <img class="bd-placeholder-img rounded-circle mb-3" width="140" height="140" src="{{userData.userImage}}" alt="">
             <h5 class="fw-normal mb-4"><span class="bg-warning p-1 fw-semibold rounded">{{userData.firstName}}</span> {{userData.lastName}}</h5>
             <p><span class="fw-bold">Address:</span> {{userData.address}}</p>
