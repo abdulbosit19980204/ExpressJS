@@ -133,7 +133,7 @@
                     <span class="text-light fw-normal"> I want to delete my account:</span>
                 </span>
                 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal</button>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete Account</button>
         <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="modal-body">
                         Delete Account Confirmation
-                                Dear <span class="bg-warning fw-bold">{{userData.firstName}} {{userData.lastName}}</span>,
+                                Dear <span class="bg-warning fw-bold ps-pe-3">{{userData.firstName}} {{userData.lastName}}</span>,
                                 We are sorry to see you go. Before you proceed with deleting your account, please take a moment to read the following:
                                 This action cannot be undone, and you will lose access to your account, settings, preferences, and any content or data associated with your account.
                                 Deleted data cannot be recovered. If you wish to continue, please be sure that you have backed up any important information.
