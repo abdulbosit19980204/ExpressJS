@@ -31,6 +31,12 @@ router.get('/logout', (req, res) => {
 
 })
 
+router.get('/contact', (req, res) => {
+    res.render('contact', {
+        isContact: true,
+    })
+})
+
 // Post methods
 
 

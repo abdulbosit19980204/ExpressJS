@@ -7,7 +7,11 @@
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/" class="nav-link px-2 ">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-secondary">Contact</a></li>
+        {{#if isContact}}
+        <li><a href="/Contact" class="nav-link text-secondary text-center text-primary-emphasis bg-primary-subtle">Contact</a></li>
+        {{else}}
+        <li><a href="/Contact" class="nav-link px-2 link-secondary">Contact</a></li>
+        {{/if}}
         <li><a href="#" class="nav-link px-2 link-secondary">About</a></li>
         {{#if token}}
         <li>
