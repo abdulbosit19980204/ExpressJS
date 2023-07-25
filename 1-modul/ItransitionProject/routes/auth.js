@@ -46,7 +46,10 @@ router.get('/contact', (req, res) => {
     })
 })
 
-// Post methods
+router.get('/about', (req, res) => {
+        res.render('about')
+    })
+    // Post methods
 
 
 router.post('/register', async(req, res) => {
