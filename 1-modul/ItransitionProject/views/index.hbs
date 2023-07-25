@@ -74,99 +74,28 @@
     {{> product}}
   </div>
   <div class="col-12 mt-4">
-    New Arrival
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-          <div class="col-4">
-            <div class="card card-cover h-100 overflow-hidden text-bg-black bg-black rounded-4 shadow-lg" style="background-image: url('https://4kwallpapers.com/images/wallpapers/outrun-neon-dark-background-purple-1080x2400-4523.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                    <img class="img-fluid" src="https://www.showplacerents.com/images2/lps/xbox-ps5-reserve/ps5.png" alt="">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <small>Earth</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-                    <small>3d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-      <div class="col-8 w-50">
-          <div class="col-12">
-            <div class="card w-100  h-50 overflow-hidden text-bg-black bg-black rounded-4 shadow-lg" style="background-image: url('https://4kwallpapers.com/images/wallpapers/outrun-neon-dark-background-purple-1080x2400-4523.jpg');">
-              <div class="d-flex flex-column  p-5 pb-3 text-white text-shadow-1">
-                    <img class="img-fluid" src="https://www.pngall.com/wp-content/uploads/4/Deep-Thinking-Woman-PNG-Free-Download.png" alt="">
-                    {{!-- <h1>Welcome, {{google_user.displayName}}</h1>
-                    <img src="{{google_user.photos[0].value}}" alt="{{google_user.displayName}}"> --}}
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <small>Earth</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-                    <small>3d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex">
-             <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-2.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-                    <small>Pakistan</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-                    <small>4d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');">
-              <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
-                <ul class="d-flex list-unstyled mt-auto">
-                  <li class="me-auto">
-                    <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-                  </li>
-                  <li class="d-flex align-items-center me-3">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-                    <small>California</small>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-                    <small>5d</small>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          </div>
-         
-      </div>
+    {{!-- New arrival --}}
+      <div class="d-flex align-items-center fs-5 fw-bold">
+    <div class="bg-danger rounded" style="width: 20px; height: 50px;"></div><span class="ms-3 fs-4 font-monospace text-danger">Our Partners</span>
     </div>
+    <div class=" d-flex justify-content-between">
+    <h1>Visit Our Partners</h1>
+     <div class="fs-3">
+        <a href="#"> <i class="bi  bi-arrow-left-circle-fill  text-secondary"></i></a>
+        <a href="#"> <i class="bi  bi-arrow-right-circle-fill text-secondary"></i></a>
+    </div>
+    </div>
+  {{> ourpartner}}
 
     
+  </div>
+  <div class="col-12 mt-4">
+      
+<div class="row mt-5 pt-5 pb-5 mb-5  justify-content-center ">
+<div class="col-3  text-center justify-content-center align-middle"><div  class="">  <i class="shadow  p-2 text-light bg-black rounded-circle pt-1 pb-1 fs-2 bi bi-truck"  style="width: 50px; height: 50px;"></i>        </div><br><br> <h5 class="fw-bolder ps-3">FREE AND FAST DELIVERY</h5><p>Free delivery for all orders over $140</p>  </div>
+<div class="col-3  text-center justify-content-center align-middle"><div  class=" "> <i class="shadow  p-2 text-light bg-black rounded-circle pt-1 pb-1 fs-2 bi bi-headset" style="width: 50px; height: 50px;" ></i>      </div><br><br> <h5 class="fw-bolder ps-3">24/7 CUSTOMER SERVICE</h5><p>Friendly 24/7 customer support</p>  </div>
+<div class="col-3  text-center justify-content-center align-middle"><div  class=" "> <i class="shadow  p-2 text-light bg-black rounded-circle pt-1 pb-1 fs-2 bi bi-shield-check" style="width: 50px; height: 50px;"></i> </div><br><br> <h5 class="fw-bolder ps-3">MONEY BACK GUARANTEE</h5><p>We reurn money within 30 days</p>  </div>
+</div>
   </div>
 </div>
 

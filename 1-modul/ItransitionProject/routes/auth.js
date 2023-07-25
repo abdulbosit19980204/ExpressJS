@@ -47,7 +47,10 @@ router.get('/contact', (req, res) => {
 })
 
 router.get('/about', (req, res) => {
-        res.render('about')
+    res.render('about')
+})
+router.get('/dashbord', (req, res) => {
+        res.render('dashbord')
     })
     // Post methods
 
