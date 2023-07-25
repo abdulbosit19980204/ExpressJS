@@ -10,6 +10,7 @@ router.get('/setting', async(req, res) => {
     const userData = await User.findById(req.userId).lean()
     res.render('setting', {
         userData: userData,
+        isSetting: true,
         settingError: req.flash('settingError')
     })
 })
